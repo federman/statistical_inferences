@@ -526,8 +526,8 @@ cat(longmcq(opts_p))
 ```{r, echo = FALSE, results = 'asis'}
 opts_p <- c(
    "Given the mean difference and standard deviation, as the sample size becomes bigger, the *t*-value become larger, and Cohen’s *d* becomes larger.",
-   answer = "Given the mean difference and standard deviation, as the sample size becomes bigger, the *t*-value gets closer to the true value, and Cohen’s *d* becomes larger.",
-   "Given the mean difference and standard deviation, as the sample size becomes bigger, the *t*-value become larger, and Cohen’s *d* gets closer to the true value.", 
+   "Given the mean difference and standard deviation, as the sample size becomes bigger, the *t*-value gets closer to the true value, and Cohen’s *d* becomes larger.",
+   answer = "Given the mean difference and standard deviation, as the sample size becomes bigger, the *t*-value become larger, and Cohen’s *d* gets closer to the true value.", 
    "Given the mean difference and standard deviation, as the sample size becomes bigger, the *t*-value gets closer to the true value, and Cohen’s *d* gets closer to the true value."
 )
 cat(longmcq(opts_p))
