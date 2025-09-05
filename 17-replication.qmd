@@ -68,7 +68,7 @@ There are multiple ways to statistically analyze a replication study [@anderson_
 
 
 $$
-Z_{Diff} = \frac{{{\delta}}_{1}{- {\delta}}_{2}}{\sqrt{{V}_{\delta_{1}} + {V}_{\delta_{2}}}}
+Z_\mathrm{Diff} = \frac{\delta_1 - \delta_2}{\sqrt{V_{\delta_1} + V_{\delta_2}}}
 $$
 
 where the difference between the two Cohen's *d* effect sizes is divided by the standard error of the difference score, based on the square root of the combined variances of the effect sizes [@borenstein_introduction_2009, formula 19.6 and 19.7]. This formula provides a hint why researchers rarely test for differences between effect sizes. The standard error of the difference score is based on the variance in the original and replication study. If the original study has a small sample size, the variance will be large, and a test of the difference between effect sizes can have very low power.
@@ -141,7 +141,7 @@ metafor::forest(res_h,
 It is also possible to test the difference between correlations, where the formula is:
 
 $$
-Z = \frac{ln(1+r)-ln(1-r)}{2}
+Z = \frac{\ln(1+r) - \ln(1-r)}{2}
 $$
 
 This test can for example be performed in the cocor package in R:
