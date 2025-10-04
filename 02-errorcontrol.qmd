@@ -327,16 +327,19 @@ Nevertheless, some researchers have proposed to move away from the default use o
 There are two main reasons to abandon the universal use of a 5% alpha level. The first is that decision-making becomes more efficient [@mudge_setting_2012; @gannon_blending_2019]. If researchers use hypothesis tests to make dichotomous decisions from a methodological falsificationist approach to statistical inferences, and have a certain maximum sample size they are willing or able to collect, it is typically possible to make decisions more efficiently by choosing error rates such that the combined cost of Type 1 and Type 2 errors is minimized. If we aim to either minimize or balance Type 1 and Type 2 error rates for a given sample size and effect size, the alpha level should be set not based on convention, but by weighting the relative cost of both types of errors [@maier_justify_2022].
 
 ```{r justifyalpha1, warnings = FALSE, echo=FALSE, fig.show='hide'}
-res1 <- JustifyAlpha::optimal_alpha(power_function = "pwr::pwr.t.test(d = 0.5, n = 80, sig.level = x, type = 'two.sample', alternative = 'two.sided')$power", error = "balance", costT1T2 = 4, printplot = FALSE)
+suppressWarnings({
+  res1 <- JustifyAlpha::optimal_alpha(power_function = "pwr::pwr.t.test(d = 0.5, n = 80, sig.level = x, type = 'two.sample', alternative = 'two.sided')$power", error = "balance", costT1T2 = 4, printplot = FALSE)
 
-res2 <- JustifyAlpha::optimal_alpha(power_function = "pwr::pwr.t.test(d = 0.5, n = 64, sig.level = x, type = 'two.sample', alternative = 'two.sided')$power", error = "minimize", costT1T2 = 4, printplot = TRUE)
-
+  res2 <- JustifyAlpha::optimal_alpha(power_function = "pwr::pwr.t.test(d = 0.5, n = 64, sig.level = x, type = 'two.sample', alternative = 'two.sided')$power", error = "minimize", costT1T2 = 4, printplot = TRUE)
+})
 ```
 
 For example, imagine a researcher plans to collect 64 participants per condition to detect a d = 0.5 effect, and weighs the cost of Type 1 errors 4 times as much as Type 2 errors. This is exactly the scenario Cohen (1988) described, and with 64 participants per condition the relative weight of Type 1 and Type 2 errors yields a 5% Type 1 error rate and a 20% Type 2 error rate. Now imagine that this researcher realizes they have the resources to collect 80 observations instead of just 64. With an interest in an effect size of d = 0.5, the relative weight of Type 1 and Type 2 errors of 4 (a as suggested by Cohen) would be satisfied if they were to set the alpha level to `r round(res1$alpha, 3)`, as the Type 2 error rate would be `r round(res1$beta, 3)`. Alternatively, the researcher might have decided to collect 64 observations, but rather than balance the error rates, instead set the alpha level such that the weighted combined error rate is minimized, which is achieved when the alpha level is set to `r round(res2$alpha, 3)`, as visualized in @fig-minerror (for further information, see @maier_justify_2022).
 
 ```{r fig-minerror, echo=FALSE, warnings = FALSE, fig.cap='Weighted combined error rate, minimized at alpha = 0.037.'}
-res2$plot
+suppressWarnings({
+  res2$plot
+})
 ```
 
 Justifying error rates can lead to situations where the alpha level is increased above 0.05, because this leads to better decision making. Winer (1962) writes: 

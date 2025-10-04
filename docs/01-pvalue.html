@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.7.32">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="This open educational resource contains information to improve statistical inferences, design better experiments, and report scientific research more transparently.">
 <title>1&nbsp; Using p-values to test a hypothesis – Improving Your Statistical Inferences</title>
@@ -19,8 +19,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -31,7 +32,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -84,17 +85,20 @@ div.csl-indent {
 <link href="./02-errorcontrol.html" rel="next">
 <link href="./index.html" rel="prev">
 <link href="./images/logos/favicon.ico" rel="icon">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-c3c2c9e745155556954bc4da23476b10.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-8c0058e5e3bd740c0d6c45014de01b5a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-3327e73e14e9b88e17095f9410adaab4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-8c0058e5e3bd740c0d6c45014de01b5a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -156,7 +160,169 @@ window.Quarto = {
 <link rel="stylesheet" href="include/style.css">
 <link rel="stylesheet" href="include/webex.css">
 </head>
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
@@ -400,69 +566,141 @@ window.Quarto = {
 <p>Thus, in a Neyman-Pearson approach, <em>p</em>-values form the basis of decisions about which claims to make. In science, such claims underlie most novel experiments in the form of <strong>auxiliary hypotheses</strong>, or the assumptions about underlying hypotheses that are assumed to be accurate in order for a test to work as planned <span class="citation" data-cites="hempel_philosophy_1966">(<a href="references.html#ref-hempel_philosophy_1966" role="doc-biblioref">Hempel, 1966</a>)</span>. For example, if it is important that participants can see color in a planned experiment, we assume it is true that the <a href="https://en.wikipedia.org/wiki/Ishihara_test">Ishihara test</a> successfully identifies which participants are colorblind.</p>
 </section><section id="creating-a-null-model" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="creating-a-null-model">
 <span class="header-section-number">1.2</span> Creating a null model</h2>
-<p>Assume I ask two groups of 10 people how much they liked the extended director’s cut of the Lord of the Rings (LOTR) trilogy. This means our <strong>total sample size</strong> (<em>N</em>) is 20, and the sample size in each group (<em>n</em>) is 10. The first group consists of my friends, and the second groups consists of friends of my wife. Our friends rate the trilogy on a score from 1 to 10. We can calculate the average rating by my friends, which is 8.7, and the average rating by my wife’s friends, which is 7.7. We can compare the scores in both groups by looking at the raw data, and by plotting the data.</p>
+<p>Assume I ask two groups of 10 people how much they liked the extended director’s cut of the Lord of the Rings (LOTR) trilogy (see <a href="#fig-friends" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>). This means our <strong>total sample size</strong> (<em>N</em>) is 20, and the sample size in each group (<em>n</em>) is 10. The first group consists of my friends, and the second groups consists of friends of my wife. Our friends rate the trilogy on a score from 1 to 10. We can calculate the average rating by my friends, which is 8.7, and the average rating by my wife’s friends, which is 7.7. We can compare the scores in both groups by looking at the raw data, and by plotting the data.</p>
 <div class="cell" data-layout-align="center">
-<div class="cell-output-display">
+<div id="fig-friends" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-friends-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table table-striped" style="width: auto !important; ">
-<caption>Ratings for the Lord of the Rings extended trilogy by two groups of friends.</caption>
- <thead><tr>
-<th style="text-align:left;">  </th>
-   <th style="text-align:center;"> Friends of Daniel </th>
-   <th style="text-align:center;"> Friends of Kyra </th>
-  </tr></thead>
+<caption>
+Ratings for the Lord of the Rings extended trilogy by two groups of friends.
+</caption>
+<thead><tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Friends of Daniel
+</th>
+<th style="text-align:center;">
+Friends of Kyra
+</th>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;"> friend_1 </td>
-   <td style="text-align:center;"> 9 </td>
-   <td style="text-align:center;"> 9 </td>
-  </tr>
+<td style="text-align:left;">
+friend_1
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+9
+</td>
+</tr>
 <tr>
-<td style="text-align:left;"> friend_2 </td>
-   <td style="text-align:center;"> 7 </td>
-   <td style="text-align:center;"> 6 </td>
-  </tr>
+<td style="text-align:left;">
+friend_2
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+6
+</td>
+</tr>
 <tr>
-<td style="text-align:left;"> friend_3 </td>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> 7 </td>
-  </tr>
+<td style="text-align:left;">
+friend_3
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+7
+</td>
+</tr>
 <tr>
-<td style="text-align:left;"> friend_4 </td>
-   <td style="text-align:center;"> 9 </td>
-   <td style="text-align:center;"> 8 </td>
-  </tr>
+<td style="text-align:left;">
+friend_4
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+8
+</td>
+</tr>
 <tr>
-<td style="text-align:left;"> friend_5 </td>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> 7 </td>
-  </tr>
+<td style="text-align:left;">
+friend_5
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+7
+</td>
+</tr>
 <tr>
-<td style="text-align:left;"> friend_6 </td>
-   <td style="text-align:center;"> 9 </td>
-   <td style="text-align:center;"> 9 </td>
-  </tr>
+<td style="text-align:left;">
+friend_6
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+9
+</td>
+</tr>
 <tr>
-<td style="text-align:left;"> friend_7 </td>
-   <td style="text-align:center;"> 9 </td>
-   <td style="text-align:center;"> 8 </td>
-  </tr>
+<td style="text-align:left;">
+friend_7
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+8
+</td>
+</tr>
 <tr>
-<td style="text-align:left;"> friend_8 </td>
-   <td style="text-align:center;"> 10 </td>
-   <td style="text-align:center;"> 8 </td>
-  </tr>
+<td style="text-align:left;">
+friend_8
+</td>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:center;">
+8
+</td>
+</tr>
 <tr>
-<td style="text-align:left;"> friend_9 </td>
-   <td style="text-align:center;"> 9 </td>
-   <td style="text-align:center;"> 8 </td>
-  </tr>
+<td style="text-align:left;">
+friend_9
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+8
+</td>
+</tr>
 <tr>
-<td style="text-align:left;"> friend_10 </td>
-   <td style="text-align:center;"> 9 </td>
-   <td style="text-align:center;"> 7 </td>
-  </tr>
+<td style="text-align:left;">
+friend_10
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+7
+</td>
+</tr>
 </tbody>
 </table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-friends-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: Ratings for the Lord of the Rings extended trilogy by two groups of friends.
+</figcaption></figure>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
@@ -505,7 +743,7 @@ mean in group Friends of Daniel   mean in group Friends of Kyra
 <img src="01-pvalue_files/figure-html/fig-tdist-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tdist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.1: A <em>t</em>-distribution with 18 degrees of freedom.
+Figure&nbsp;1.2: A <em>t</em>-distribution with 18 degrees of freedom.
 </figcaption></figure>
 </div>
 </div>
@@ -536,13 +774,13 @@ Figure&nbsp;1.1: A <em>t</em>-distribution with 18 degrees of freedom.
 <img src="01-pvalue_files/figure-html/fig-pdistr1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pdistr1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.2: Distribution of <em>p</em>-values when power = 50%.
+Figure&nbsp;1.3: Distribution of <em>p</em>-values when power = 50%.
 </figcaption></figure>
 </div>
 </div>
 </div>
 <p>On the x-axis we see <em>p</em>-values from 0 to 1 in 20 bars, and on the y-axis we see how frequently these <em>p</em>-values were observed. There is a horizontal red dotted line that indicates an alpha of 5% (located at a frequency of 100000 * 0.05 = 5000) – but you can ignore this line for now. In the title of the graph, the statistical power that is achieved in the simulated studies is given (assuming an alpha of 0.05): The studies have 50% power.</p>
-<p>The simulation result illustrates the <strong>probability density function</strong> of <em>p</em>-values for a <em>t</em>-test. A probability density function provides the probability that a random variable has a specific value (such as <a href="#fig-tdist" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>) of the <em>t</em>-distribution). Because the <em>p</em>-value is a random variable, we can use its probability density function to plot the <em>p</em>-value distribution <span class="citation" data-cites="hung_behavior_1997 ulrich_properties_2018">(<a href="references.html#ref-hung_behavior_1997" role="doc-biblioref">Hung et al., 1997</a>; <a href="references.html#ref-ulrich_properties_2018" role="doc-biblioref">Ulrich &amp; Miller, 2018</a>)</span>, as in <a href="#fig-pdft" class="quarto-xref">Figure&nbsp;<span>1.3</span></a>). In <a href="http://shiny.ieis.tue.nl/d_p_power/">this online Shiny app</a> you can vary the sample size, effect size, and alpha level to examine the effect on the <em>p</em>-value distribution. Increasing the sample size or the effect size will increase the steepness of the <em>p</em>-value distribution, which means that the probability to observe small <em>p</em>-values increases. The <em>p</em>-value distribution is a function of the statistical power of the test.</p>
+<p>The simulation result illustrates the <strong>probability density function</strong> of <em>p</em>-values for a <em>t</em>-test. A probability density function provides the probability that a random variable has a specific value (such as <a href="#fig-tdist" class="quarto-xref">Figure&nbsp;<span>1.2</span></a>) of the <em>t</em>-distribution). Because the <em>p</em>-value is a random variable, we can use its probability density function to plot the <em>p</em>-value distribution <span class="citation" data-cites="hung_behavior_1997 ulrich_properties_2018">(<a href="references.html#ref-hung_behavior_1997" role="doc-biblioref">Hung et al., 1997</a>; <a href="references.html#ref-ulrich_properties_2018" role="doc-biblioref">Ulrich &amp; Miller, 2018</a>)</span>, as in <a href="#fig-pdft" class="quarto-xref">Figure&nbsp;<span>1.4</span></a>). In <a href="http://shiny.ieis.tue.nl/d_p_power/">this online Shiny app</a> you can vary the sample size, effect size, and alpha level to examine the effect on the <em>p</em>-value distribution. Increasing the sample size or the effect size will increase the steepness of the <em>p</em>-value distribution, which means that the probability to observe small <em>p</em>-values increases. The <em>p</em>-value distribution is a function of the statistical power of the test.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-pdft" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -550,7 +788,7 @@ Figure&nbsp;1.2: Distribution of <em>p</em>-values when power = 50%.
 <img src="01-pvalue_files/figure-html/fig-pdft-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pdft-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.3: Probability density function for <em>p</em>-values from a two-sided <em>t</em>-test.
+Figure&nbsp;1.4: Probability density function for <em>p</em>-values from a two-sided <em>t</em>-test.
 </figcaption></figure>
 </div>
 </div>
@@ -563,15 +801,15 @@ Figure&nbsp;1.3: Probability density function for <em>p</em>-values from a two-s
 <img src="01-pvalue_files/figure-html/fig-pdistr2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pdistr2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.4: Distribution of <em>p</em>-values when the null hypothesis is true.
+Figure&nbsp;1.5: Distribution of <em>p</em>-values when the null hypothesis is true.
 </figcaption></figure>
 </div>
 </div>
 </div>
 </section><section id="sec-lindley" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="sec-lindley">
 <span class="header-section-number">1.5</span> Lindley’s paradox</h2>
-<p>As statistical power increases, some <em>p</em>-values below 0.05 (e.g., <em>p</em> = 0.04) can be more likely when there is <em>no</em> effect than when there <em>is</em> an effect. This is known as Lindley’s paradox <span class="citation" data-cites="lindley_statistical_1957">(<a href="references.html#ref-lindley_statistical_1957" role="doc-biblioref">Lindley, 1957</a>)</span>, or sometimes the Jeffreys-Lindley paradox <span class="citation" data-cites="spanos_who_2013">(<a href="references.html#ref-spanos_who_2013" role="doc-biblioref">Spanos, 2013</a>)</span>. Because the distribution of <em>p</em>-values is a function of the statistical power <span class="citation" data-cites="cumming_replication_2008">(<a href="references.html#ref-cumming_replication_2008" role="doc-biblioref">Cumming, 2008</a>)</span>, the higher the power, the more right-skewed the <em>p</em>-value distribution becomes (i.e., the more likely it becomes that small <em>p</em>-values will be observed). When there is no true effect, <em>p</em>-values are uniformly distributed, and 1% of observed <em>p</em>-values fall between 0.04 and 0.05. When there is a true effect and the statistical power is extremely high, not only will most <em>p</em>-values fall below 0.05; in fact, most <em>p</em>-values will fall well below 0.01. In <a href="#fig-paradox" class="quarto-xref">Figure&nbsp;<span>1.5</span></a> we see that, with a true effect and high power, very small <em>p</em>-values (e.g., 0.001) are more likely to be observed when there <em>is</em> an effect than when there is <em>no</em> effect (e.g., the dotted black curve representing 99% power falls above the grey horizontal line representing the uniform distribution when the null is true for a <em>p</em>-value of 0.01).</p>
-<p>Yet perhaps surprisingly, observing a <em>p</em>-value of 0.04 is more likely when the null hypothesis (<span class="math inline">\(H_0\)</span>) is true than when the alternative hypothesis (<span class="math inline">\(H_1\)</span>) is true and we have very high power, as illustrated by the fact that in <a href="#fig-paradox" class="quarto-xref">Figure&nbsp;<span>1.5</span></a> the density of the <em>p</em>-value distribution at p = 0.04 is higher if the null hypothesis is true than when the alternative hypothesis is true and a test has 99% power. Lindley’s paradox shows that a <em>p</em>-value of for example 0.04 can be statistically significant, but at the same time provides evidence for the null hypothesis. From a Neyman-Pearson approach we have made a claim that has a maximum error rate of 5%, but from a <a href="03-likelihoods.html">likelihood</a> or <a href="04-bayes.html">Bayesian</a> approach, we should conclude that our data provides evidence in favor of the null hypothesis, relative to the alternative hypothesis. Lindley’s paradox illustrates when different statistical philosophies would reach different conclusions, and why a <em>p</em>-value cannot directly be interpreted as a measure of evidence, without taking the power of the test into account. Although a strict application of the Neyman-Pearson approach does not require it, researchers might desire to prevent situations where a frequentist rejects the null hypothesis based on <em>p</em> &lt; 0.05, when the evidence in the test favors the null hypothesis over the alternative hypothesis. This can be achieved by lowering the alpha level as a function of the sample size <span class="citation" data-cites="leamer_specification_1978 maier_justify_2022 good_bayes_1992">(<a href="references.html#ref-good_bayes_1992" role="doc-biblioref">Good, 1992</a>; <a href="references.html#ref-leamer_specification_1978" role="doc-biblioref">Leamer, 1978</a>; <a href="references.html#ref-maier_justify_2022" role="doc-biblioref">Maier &amp; Lakens, 2022</a>)</span>, as explained in the chapter on <a href="02-errorcontrol.html">error control</a>.</p>
+<p>As statistical power increases, some <em>p</em>-values below 0.05 (e.g., <em>p</em> = 0.04) can be more likely when there is <em>no</em> effect than when there <em>is</em> an effect. This is known as Lindley’s paradox <span class="citation" data-cites="lindley_statistical_1957">(<a href="references.html#ref-lindley_statistical_1957" role="doc-biblioref">Lindley, 1957</a>)</span>, or sometimes the Jeffreys-Lindley paradox <span class="citation" data-cites="spanos_who_2013">(<a href="references.html#ref-spanos_who_2013" role="doc-biblioref">Spanos, 2013</a>)</span>. Because the distribution of <em>p</em>-values is a function of the statistical power <span class="citation" data-cites="cumming_replication_2008">(<a href="references.html#ref-cumming_replication_2008" role="doc-biblioref">Cumming, 2008</a>)</span>, the higher the power, the more right-skewed the <em>p</em>-value distribution becomes (i.e., the more likely it becomes that small <em>p</em>-values will be observed). When there is no true effect, <em>p</em>-values are uniformly distributed, and 1% of observed <em>p</em>-values fall between 0.04 and 0.05. When there is a true effect and the statistical power is extremely high, not only will most <em>p</em>-values fall below 0.05; in fact, most <em>p</em>-values will fall well below 0.01. In <a href="#fig-paradox" class="quarto-xref">Figure&nbsp;<span>1.6</span></a> we see that, with a true effect and high power, very small <em>p</em>-values (e.g., 0.001) are more likely to be observed when there <em>is</em> an effect than when there is <em>no</em> effect (e.g., the dotted black curve representing 99% power falls above the grey horizontal line representing the uniform distribution when the null is true for a <em>p</em>-value of 0.01).</p>
+<p>Yet perhaps surprisingly, observing a <em>p</em>-value of 0.04 is more likely when the null hypothesis (<span class="math inline">\(H_0\)</span>) is true than when the alternative hypothesis (<span class="math inline">\(H_1\)</span>) is true and we have very high power, as illustrated by the fact that in <a href="#fig-paradox" class="quarto-xref">Figure&nbsp;<span>1.6</span></a> the density of the <em>p</em>-value distribution at p = 0.04 is higher if the null hypothesis is true than when the alternative hypothesis is true and a test has 99% power. Lindley’s paradox shows that a <em>p</em>-value of for example 0.04 can be statistically significant, but at the same time provides evidence for the null hypothesis. From a Neyman-Pearson approach we have made a claim that has a maximum error rate of 5%, but from a <a href="03-likelihoods.html">likelihood</a> or <a href="04-bayes.html">Bayesian</a> approach, we should conclude that our data provides evidence in favor of the null hypothesis, relative to the alternative hypothesis. Lindley’s paradox illustrates when different statistical philosophies would reach different conclusions, and why a <em>p</em>-value cannot directly be interpreted as a measure of evidence, without taking the power of the test into account. Although a strict application of the Neyman-Pearson approach does not require it, researchers might desire to prevent situations where a frequentist rejects the null hypothesis based on <em>p</em> &lt; 0.05, when the evidence in the test favors the null hypothesis over the alternative hypothesis. This can be achieved by lowering the alpha level as a function of the sample size <span class="citation" data-cites="leamer_specification_1978 maier_justify_2022 good_bayes_1992">(<a href="references.html#ref-good_bayes_1992" role="doc-biblioref">Good, 1992</a>; <a href="references.html#ref-leamer_specification_1978" role="doc-biblioref">Leamer, 1978</a>; <a href="references.html#ref-maier_justify_2022" role="doc-biblioref">Maier &amp; Lakens, 2022</a>)</span>, as explained in the chapter on <a href="02-errorcontrol.html">error control</a>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-paradox" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -579,7 +817,7 @@ Figure&nbsp;1.4: Distribution of <em>p</em>-values when the null hypothesis is t
 <img src="01-pvalue_files/figure-html/fig-paradox-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-paradox-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.5: <em>P</em>-value distribution for 0 (grey horizontal line, 50 percent power (black solid curve), and 99 percent power (black dotted curve, where <em>p</em>-values just below 0.05 are more likely when <span class="math inline">\(H_0\)</span> is true than when <span class="math inline">\(H_1\)</span> is true).
+Figure&nbsp;1.6: <em>P</em>-value distribution for 0 (grey horizontal line, 50 percent power (black solid curve), and 99 percent power (black dotted curve, where <em>p</em>-values just below 0.05 are more likely when <span class="math inline">\(H_0\)</span> is true than when <span class="math inline">\(H_1\)</span> is true).
 </figcaption></figure>
 </div>
 </div>
@@ -605,8 +843,8 @@ Figure&nbsp;1.5: <em>P</em>-value distribution for 0 (grey horizontal line, 50 p
 </section><section id="sec-misconceptions" class="level2" data-number="1.7"><h2 data-number="1.7" class="anchored" data-anchor-id="sec-misconceptions">
 <span class="header-section-number">1.7</span> Preventing common misconceptions about <em>p</em>-values</h2>
 <p>A <em>p</em>-value is the probability of the observed data, or more extreme data, under the assumption that the null hypothesis is true. To understand what this means, it might be especially useful to know what this doesn’t mean. First, we need to know what ‘the assumption that the null hypothesis is true’ looks like, and which data we should expect if the null hypothesis is true. Although the null hypothesis can be any value, in this assignment we will assume the null hypothesis is specified as a mean difference of 0. For example, we might be interested in calculating the difference between a control condition and an experimental condition on a dependent variable.</p>
-<p>It is useful to distinguish the null hypothesis (the prediction that the mean difference in the population is exactly 0) and the null model (a model of the data we should expect when we collect data when the null hypothesis is true). The null hypothesis is a point at 0, but the null model is a distribution. It is visualized in textbooks or power analysis software using pictures as you can see in <a href="#fig-tdist" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>, with <em>t</em>-values on the horizontal axis, and a critical <em>t</em>-value somewhere between 1.96 – 2.15 (depending on the sample size). This is done because the statistical test when comparing two groups is based on the <em>t</em>-distribution, and the <em>p</em>-value is statistically significant when the <em>t</em>-value is larger than a critical <em>t</em>-value.</p>
-<p>I personally find things become a lot clearer if you plot the null model as mean differences instead of <em>t</em>-values as in <a href="#fig-fig131" class="quarto-xref">Figure&nbsp;<span>1.6</span></a>. This plot shows a null model for the mean differences that we can expect when comparing two groups of 50 observations where the true difference between the two groups is 0, and the standard deviation in each group is 1. Because the standard deviation is 1, you can also interpret the mean differences as a Cohen’s <em>d</em> <a href="06-effectsize.html">effect size</a>. So this is also the distribution you can expect for a Cohen’s <em>d</em> of 0, when collecting 50 observations per group in an independent <em>t</em>-test.</p>
+<p>It is useful to distinguish the null hypothesis (the prediction that the mean difference in the population is exactly 0) and the null model (a model of the data we should expect when we collect data when the null hypothesis is true). The null hypothesis is a point at 0, but the null model is a distribution. It is visualized in textbooks or power analysis software using pictures as you can see in <a href="#fig-tdist" class="quarto-xref">Figure&nbsp;<span>1.2</span></a>, with <em>t</em>-values on the horizontal axis, and a critical <em>t</em>-value somewhere between 1.96 – 2.15 (depending on the sample size). This is done because the statistical test when comparing two groups is based on the <em>t</em>-distribution, and the <em>p</em>-value is statistically significant when the <em>t</em>-value is larger than a critical <em>t</em>-value.</p>
+<p>I personally find things become a lot clearer if you plot the null model as mean differences instead of <em>t</em>-values as in <a href="#fig-fig131" class="quarto-xref">Figure&nbsp;<span>1.7</span></a>. This plot shows a null model for the mean differences that we can expect when comparing two groups of 50 observations where the true difference between the two groups is 0, and the standard deviation in each group is 1. Because the standard deviation is 1, you can also interpret the mean differences as a Cohen’s <em>d</em> <a href="06-effectsize.html">effect size</a>. So this is also the distribution you can expect for a Cohen’s <em>d</em> of 0, when collecting 50 observations per group in an independent <em>t</em>-test.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-fig131" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -614,15 +852,15 @@ Figure&nbsp;1.5: <em>P</em>-value distribution for 0 (grey horizontal line, 50 p
 <img src="01-pvalue_files/figure-html/fig-fig131-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig131-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.6: Distribution of observed Cohen’s <em>d</em> effect sizes when collecting 50 observations per group in an independent <em>t</em>-test.
+Figure&nbsp;1.7: Distribution of observed Cohen’s <em>d</em> effect sizes when collecting 50 observations per group in an independent <em>t</em>-test.
 </figcaption></figure>
 </div>
 </div>
 </div>
 <p>The first thing to notice is that we expect that the mean of the null model is 0. Looking at the x-axis, we see the plotted distribution is centered on 0. But even if the mean difference in the population is 0 that does not imply that every pair of samples that we draw from the population will result in a mean difference of exactly zero. There is variation around the population value, as a function of the standard deviation and the sample size.</p>
 <p>The y-axis of the graph represents the density, which provides an indication of the relative likelihood of measuring a particular value from a continuous distribution. We can see that the most likely mean difference is the true population value of zero, and that differences with a magnitude greater than zero become increasingly less likely. The graph has two areas that are colored red. These areas represent the most extreme 2.5% of values in the left tail of the distribution, and the most extreme 2.5% of values in the right tail of the distribution. Together, they make up the 5% most extreme mean differences that we would expect to observe, given our number of observations, when the true mean difference is exactly 0. When a mean difference in the red area is observed, the corresponding statistical test will return a statistically significant result at a 5% alpha level, and the <em>p</em>-value will be &lt;&nbsp;0.05. In other words, no more than 5% of the observed mean differences will be far enough away from 0 to be considered ‘surprising’ or statistically significant. Because the null hypothesis is true, observing a ‘surprising’ mean difference in either of the two red areas is a Type 1 error.</p>
-<p>Let’s assume that the null model in <a href="#fig-fig131" class="quarto-xref">Figure&nbsp;<span>1.6</span></a> above is true, and that we observe a mean difference of 0.5 between the two groups. This observed difference falls in the red area in the right tail of the distribution. This means that the observed mean difference is relatively surprising, under the assumption that the true mean difference is 0. If the true mean difference is 0, the probability density functions shows that we should not expect a mean difference of 0.5 very often. If we calculate a <em>p</em>-value for this observation, it would be lower than 5%. The probability of observing a mean difference that is at least as far away from 0 as 0.5 (either to the left of the mean, or to the right, when we do a two-tailed test) is less than 5%.</p>
-<p>One reason why I prefer to plot the null model in raw scores instead of <em>t</em>-values is that you can see how the null model changes when the sample size increases. When we collect 5000 instead of 50 observations, we see that the null model is still centered on 0 – but in our null model we now expect most values will fall very closely around 0 (see <a href="#fig-fig132" class="quarto-xref">Figure&nbsp;<span>1.7</span></a>).</p>
+<p>Let’s assume that the null model in <a href="#fig-fig131" class="quarto-xref">Figure&nbsp;<span>1.7</span></a> above is true, and that we observe a mean difference of 0.5 between the two groups. This observed difference falls in the red area in the right tail of the distribution. This means that the observed mean difference is relatively surprising, under the assumption that the true mean difference is 0. If the true mean difference is 0, the probability density functions shows that we should not expect a mean difference of 0.5 very often. If we calculate a <em>p</em>-value for this observation, it would be lower than 5%. The probability of observing a mean difference that is at least as far away from 0 as 0.5 (either to the left of the mean, or to the right, when we do a two-tailed test) is less than 5%.</p>
+<p>One reason why I prefer to plot the null model in raw scores instead of <em>t</em>-values is that you can see how the null model changes when the sample size increases. When we collect 5000 instead of 50 observations, we see that the null model is still centered on 0 – but in our null model we now expect most values will fall very closely around 0 (see <a href="#fig-fig132" class="quarto-xref">Figure&nbsp;<span>1.8</span></a>).</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-fig132" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -630,7 +868,7 @@ Figure&nbsp;1.6: Distribution of observed Cohen’s <em>d</em> effect sizes when
 <img src="01-pvalue_files/figure-html/fig-fig132-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig132-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.7: Distribution of observed Cohen’s <em>d</em> effect sizes when collecting 5000 observations per group in an independent <em>t</em>-test when <em>d</em> = 0.
+Figure&nbsp;1.8: Distribution of observed Cohen’s <em>d</em> effect sizes when collecting 5000 observations per group in an independent <em>t</em>-test when <em>d</em> = 0.
 </figcaption></figure>
 </div>
 </div>
@@ -639,8 +877,8 @@ Figure&nbsp;1.7: Distribution of observed Cohen’s <em>d</em> effect sizes when
 <p><span class="math display">\[SE = \sqrt{\frac{\sigma_{1}^{2}}{n_{1}}+\frac{\sigma_{2}^{2}}{n_{2}}}\]</span></p>
 <p>This formula shows that the standard deviations of each group (<span class="math inline">\(\sigma\)</span>) are squared and divided by the sample size of that group, then added together, after which the square root is taken. The larger the sample size, the bigger the number we divide by, and thus the smaller the standard error of the difference between means. In our n = 50 example this is:</p>
 <p><span class="math display">\[\sqrt{\frac{1^{2}}{50}+\frac{1^{2}}{50}}\]</span></p>
-<p>The standard error of the differences between means is thus 0.2 for n = 50 in each group. For n = 5000, it is 0.02. Assuming a normal distribution, 95% of the observations fall between -1.96 * SE and 1.96 * SE. So, with 50 observations per group, the mean differences should fall between -1.96 * 0.2 = -0.392, and +1.96 * 0.2 = 0.392, and we can see the red areas start from approximately -0.392 to 0.392 for n = 50 (see <a href="#fig-fig131" class="quarto-xref">Figure&nbsp;<span>1.6</span></a>). With 5000 observations per group, the mean differences should fall between -1.96 * 0.02, and +1.96 * 0.02; in other words, between -0.0392 to 0.0392 (see <a href="#fig-fig132" class="quarto-xref">Figure&nbsp;<span>1.7</span></a>). Due to the larger sample size of n = 5000 observations per group, we can expect to observe mean differences closer to 0 compared to when we only had 50 observations. If we collected n = 5000 observations, and we were again to observe a mean difference of 0.5, it should be clear that this difference is even more surprising than it was when we collected 50 observations.</p>
-<p>We are now almost ready to address common misconceptions about <em>p</em>-values, but before we can do this, we need to introduce a model of the data when the null is not true. If we are not sampling data from a model where the true mean difference is 0, what does our alternative model look like? Some software (such as G*power <span class="citation" data-cites="faul_gpower_2007">Faul et al. (<a href="references.html#ref-faul_gpower_2007" role="doc-biblioref">2007</a>)</span>, see <a href="#fig-gpowerscreenshot" class="quarto-xref">Figure&nbsp;<span>1.8</span></a>) will visualize both the null model (red curve) and the alternative model (blue curve) in their output.</p>
+<p>The standard error of the differences between means is thus 0.2 for n = 50 in each group. For n = 5000, it is 0.02. Assuming a normal distribution, 95% of the observations fall between -1.96 * SE and 1.96 * SE. So, with 50 observations per group, the mean differences should fall between -1.96 * 0.2 = -0.392, and +1.96 * 0.2 = 0.392, and we can see the red areas start from approximately -0.392 to 0.392 for n = 50 (see <a href="#fig-fig131" class="quarto-xref">Figure&nbsp;<span>1.7</span></a>). With 5000 observations per group, the mean differences should fall between -1.96 * 0.02, and +1.96 * 0.02; in other words, between -0.0392 to 0.0392 (see <a href="#fig-fig132" class="quarto-xref">Figure&nbsp;<span>1.8</span></a>). Due to the larger sample size of n = 5000 observations per group, we can expect to observe mean differences closer to 0 compared to when we only had 50 observations. If we collected n = 5000 observations, and we were again to observe a mean difference of 0.5, it should be clear that this difference is even more surprising than it was when we collected 50 observations.</p>
+<p>We are now almost ready to address common misconceptions about <em>p</em>-values, but before we can do this, we need to introduce a model of the data when the null is not true. If we are not sampling data from a model where the true mean difference is 0, what does our alternative model look like? Some software (such as G*power <span class="citation" data-cites="faul_gpower_2007">Faul et al. (<a href="references.html#ref-faul_gpower_2007" role="doc-biblioref">2007</a>)</span>, see <a href="#fig-gpowerscreenshot" class="quarto-xref">Figure&nbsp;<span>1.9</span></a>) will visualize both the null model (red curve) and the alternative model (blue curve) in their output.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-gpowerscreenshot" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -648,7 +886,7 @@ Figure&nbsp;1.7: Distribution of observed Cohen’s <em>d</em> effect sizes when
 <img src="images/1.3.3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gpowerscreenshot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.8: Screenshot from G*Power software visualizing the distributions of <em>t</em>-values of the null model (in red) and the alternative model (in blue) and the critical <em>t</em>-value (1.66055), i.e.&nbsp;the threshold distinguishing significant from non-significant results.
+Figure&nbsp;1.9: Screenshot from G*Power software visualizing the distributions of <em>t</em>-values of the null model (in red) and the alternative model (in blue) and the critical <em>t</em>-value (1.66055), i.e.&nbsp;the threshold distinguishing significant from non-significant results.
 </figcaption></figure>
 </div>
 </div>
@@ -661,7 +899,7 @@ Figure&nbsp;1.8: Screenshot from G*Power software visualizing the distributions 
 <img src="01-pvalue_files/figure-html/fig-fig134-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig134-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.9: Distribution of observed Cohen’s <em>d</em> effect sizes when collecting 50 observations per group in an independent <em>t</em>-test when <em>d</em> = 0 (null model, left) or <em>d</em> = 0.5 (alternative model, right).
+Figure&nbsp;1.10: Distribution of observed Cohen’s <em>d</em> effect sizes when collecting 50 observations per group in an independent <em>t</em>-test when <em>d</em> = 0 (null model, left) or <em>d</em> = 0.5 (alternative model, right).
 </figcaption></figure>
 </div>
 </div>
@@ -677,7 +915,7 @@ Figure&nbsp;1.9: Distribution of observed Cohen’s <em>d</em> effect sizes when
 <p>A common version of this misconception is reading a sentence such as ‘because <em>p</em> &gt; 0.05 we can conclude that there is no effect’. Another version of such a sentence is ‘there was no difference, (<em>p</em> &gt; 0.05)’.</p>
 <p>Before we look at this misconception in some detail, I want to remind you of one fact that is easy to remember, and will enable you to recognize many misconceptions about <em>p</em>-values: <em>p</em>-values are a statement about the probability of data, not a statement about the probability of a hypothesis or the probability of a theory. Whenever you see <em>p</em>-values interpreted as a probability of a theory or a hypothesis, you know something is not right. Examples of statements about a hypothesis are ‘The null hypothesis is true’, or ‘The alternative hypothesis is true’, because both these statements say that the probability that the null or alternative model is true is 100%. A subtler version is a statement such as ‘the observed difference is not due to chance’. The observed difference is only ‘due to chance’ (instead of due to the presence of a real difference) when the null hypothesis is true, and as before, this statement implies it is 100% probable that the null hypothesis is true.</p>
 <p>When you conclude that ‘there is no effect’ or that ‘there is no difference’ you are similarly claiming that it is 100% probable that the null hypothesis is true. But since <em>p</em>-values are statements about the probability of data, you should refrain from making statements about the probability of a hypothesis solely based on a <em>p</em>-value. That’s ok. <em>p</em>-values were designed to help you identify surprising results from a noisy data generation process (aka the real world). They were not designed to quantify the probability that a hypothesis is true.</p>
-<p>Let’s take a concrete example that will illustrate why a non-significant result does not mean that the null hypothesis is true. In <a href="#fig-fig136" class="quarto-xref">Figure&nbsp;<span>1.10</span></a> below, Omniscient Jones tells us that the true mean difference is 0.5. We can see this because the alternative distribution which visualizes the probability of the mean differences we expect when the alternative hypothesis is true is centered on 0.5. We have observed a mean difference of 0.35. This value is not extreme enough to be statistically different from 0. We can see this because the value does not fall within the red area of the null model (and hence, the <em>p</em>-value is not smaller than our alpha level).</p>
+<p>Let’s take a concrete example that will illustrate why a non-significant result does not mean that the null hypothesis is true. In <a href="#fig-fig136" class="quarto-xref">Figure&nbsp;<span>1.11</span></a> below, Omniscient Jones tells us that the true mean difference is 0.5. We can see this because the alternative distribution which visualizes the probability of the mean differences we expect when the alternative hypothesis is true is centered on 0.5. We have observed a mean difference of 0.35. This value is not extreme enough to be statistically different from 0. We can see this because the value does not fall within the red area of the null model (and hence, the <em>p</em>-value is not smaller than our alpha level).</p>
 <p>Nevertheless, we see that observing a mean difference of 0.35 is not only quite likely given that the true mean difference is 0.5, but observing a mean difference of 0.35 is much more likely under the alternative model than under the null model. You can see this by comparing the height of the density curve at a difference of 0.35 for the null model, which is approximately 0.5, and the height of the density curve for the alternative model, which is approximately 1.5. See the chapter on <a href="03-likelihoods.html#sec-likettest">likelihoods</a> for further details.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -686,7 +924,7 @@ Figure&nbsp;1.9: Distribution of observed Cohen’s <em>d</em> effect sizes when
 <img src="01-pvalue_files/figure-html/fig-fig136-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig136-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.10: Distribution of observed Cohen’s <em>d</em> effect sizes when collecting 50 observations per group in an independent <em>t</em>-test for <em>d</em> = 0 and <em>d</em> = 0.5 when observing <em>d</em> = 0.35.
+Figure&nbsp;1.11: Distribution of observed Cohen’s <em>d</em> effect sizes when collecting 50 observations per group in an independent <em>t</em>-test for <em>d</em> = 0 and <em>d</em> = 0.5 when observing <em>d</em> = 0.35.
 </figcaption></figure>
 </div>
 </div>
@@ -702,15 +940,16 @@ Figure&nbsp;1.10: Distribution of observed Cohen’s <em>d</em> effect sizes whe
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">50</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] -0.02336328 -0.80422021 -0.27523627  0.92117692  0.13927549  1.77373528
- [7]  0.02560062 -1.63739378  0.53513519 -0.71425931  0.97002581 -0.53147070
-[13]  1.89575305  0.90135796 -1.52031521 -0.49956401  0.17453749 -0.02545295
-[19] -1.42207418 -0.69499814  0.23066438 -0.36666452  0.19813447  0.46390142
-[25]  0.75924204  1.69392328  1.58195295  1.38592417  0.75787938 -0.74859112
-[31]  1.07475666 -0.28223156 -0.69177472 -1.19393537 -0.29700340  1.38752264
-[37] -1.34893631  0.08010594  0.04338434  0.13148747 -0.03509415  1.24870013
-[43] -1.29774983  0.25064672 -1.60588281  0.96862978  1.01780710  0.17551709
-[49]  2.26402707 -0.50420291</code></pre>
+<pre><code> [1] -0.923151109 -0.008382639 -0.142949318  0.035642706  0.633938356
+ [6]  0.268385976 -1.046197761  1.068956837 -0.651206587  1.215704780
+[11] -0.893511620 -1.266701744 -0.323154877 -0.097981621  0.544920138
+[16] -1.749978285  0.955762935  0.071635696  2.019073966 -2.489532421
+[21]  0.467744123  0.340765851  1.759096020 -1.029374388  0.767887041
+[26] -0.799796965  1.319362778  1.301356858 -0.734106593  0.243141890
+[31]  0.066455419  1.259239531 -1.027806305  1.221247253  0.799718964
+[36] -1.050014167  0.110603990  0.391496600 -0.705735660  1.736907186
+[41]  0.338247036 -0.908683390 -1.031992040  1.176308971 -1.191213291
+[46] -0.393296385  0.373829864  0.759435018 -0.531154485 -0.812872418</code></pre>
 </div>
 </div>
 <p>This command generates 50 random observations from a distribution with a mean of 0 and a standard deviation of 1 (in the long run – the mean and standard deviation will vary in each sample that is generated). Imagine we run this command once, and we observe a mean of 0.5. The figure below visualizes this scenario. We can perform a one-sample <em>t</em>-test against 0, and this test tells us, with a <em>p</em> &lt; .05, that the data we have observed is surprisingly different from 0, assuming the random number generator in R functions as it should and generates data with a true mean of 0.</p>
@@ -721,7 +960,7 @@ Figure&nbsp;1.10: Distribution of observed Cohen’s <em>d</em> effect sizes whe
 <img src="01-pvalue_files/figure-html/fig-fig137-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig137-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.11: Distribution of observed Cohen’s <em>d</em> effect sizes when collecting 50 observations per group in an independent <em>t</em>-test when <em>d</em> = 0 and observing <em>d</em> = 0.5.
+Figure&nbsp;1.12: Distribution of observed Cohen’s <em>d</em> effect sizes when collecting 50 observations per group in an independent <em>t</em>-test when <em>d</em> = 0 and observing <em>d</em> = 0.5.
 </figcaption></figure>
 </div>
 </div>
@@ -739,7 +978,7 @@ Figure&nbsp;1.11: Distribution of observed Cohen’s <em>d</em> effect sizes whe
 <p>Note that nothing about this is a problem with the interpretation of a <em>p</em>-value per se: A <em>p</em> &lt; 0.05 still correctly indicates that, if the null hypothesis is true, we have observed data that should be considered surprising. However, just because data are surprising, does not mean we need to care about it. It is mainly the word ‘significant’ that causes confusion here – it is perhaps less confusing to think of a ‘significant’ effect as a ‘surprising’ effect, but not necessarily as an ‘important’ effect.</p>
 </section><section id="sec-misconception4" class="level3" data-number="1.7.4"><h3 data-number="1.7.4" class="anchored" data-anchor-id="sec-misconception4">
 <span class="header-section-number">1.7.4</span> Misconception 4: If you have observed a significant finding, the probability that you have made a Type 1 error (a false positive) is 5%.</h3>
-<p>This misinterpretation is one possible explanation of the incorrect statement that a <em>p</em>-value is ‘the probability that the data are observed by chance.’ Assume we collect 20 observations, and Omniscient Jones tells us the null hypothesis is true (as in the example above where we generated random numbers in R). This means we are sampling from the distribution in <a href="#fig-fig138" class="quarto-xref">Figure&nbsp;<span>1.12</span></a>.</p>
+<p>This misinterpretation is one possible explanation of the incorrect statement that a <em>p</em>-value is ‘the probability that the data are observed by chance.’ Assume we collect 20 observations, and Omniscient Jones tells us the null hypothesis is true (as in the example above where we generated random numbers in R). This means we are sampling from the distribution in <a href="#fig-fig138" class="quarto-xref">Figure&nbsp;<span>1.13</span></a>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-fig138" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -747,7 +986,7 @@ Figure&nbsp;1.11: Distribution of observed Cohen’s <em>d</em> effect sizes whe
 <img src="01-pvalue_files/figure-html/fig-fig138-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig138-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.12: Distribution of observed Cohen’s <em>d</em> effect sizes when collecting 20 observations per group in an independent <em>t</em>-test when <em>d</em> = 0.
+Figure&nbsp;1.13: Distribution of observed Cohen’s <em>d</em> effect sizes when collecting 20 observations per group in an independent <em>t</em>-test when <em>d</em> = 0.
 </figcaption></figure>
 </div>
 </div>
@@ -801,42 +1040,42 @@ Figure&nbsp;1.12: Distribution of observed Cohen’s <em>d</em> effect sizes whe
 <p>On the x-axis we see <em>p</em>-values from 0 to 1 in 20 bars, and on the y-axis we see how frequently these <em>p</em>-values were observed. There is a horizontal red dotted line that indicates an alpha of 5% (located at a frequency of 100000*0.05 = 5000) – but you can ignore this line for now. In the title of the graph, the statistical power that is achieved in the simulated studies is given (assuming an alpha of 0.05): The studies have 50% power (with minor variations for each simulation).</p>
 <p><strong>Q1</strong>: Since the statistical power is the probability of observing a statistically significant result assuming there is a true effect, we can also see the power in the figure itself. Where?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_AICLUVPIVR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_AICLUVPIVR" value=""><span>We can calculate the number of <em>p</em>-values larger than 0.5, and divide them by the number of simulations.</span></label><label><input type="radio" autocomplete="off" name="radio_AICLUVPIVR" value="answer"><span>We can calculate the number of <em>p</em>-values in the first bar (which contains all 'significant' <em>p</em>-values from 0.00 to 0.05) and divide the <em>p</em>-values in this bar by the total number of simulations.</span></label><label><input type="radio" autocomplete="off" name="radio_AICLUVPIVR" value=""><span>We can calculate the difference between <em>p</em>-values above 0.5 minus the <em>p</em>-values below 0.5, and divide this number by the total number of simulations.</span></label><label><input type="radio" autocomplete="off" name="radio_AICLUVPIVR" value=""><span>We can calculate the difference between <em>p</em>-values above 0.5 minus the <em>p</em>-values below 0.05, and divide this number by the number of simulations.</span></label>
+<div id="radio_TZKVYOMBMA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TZKVYOMBMA" value=""><span>We can calculate the number of <em>p</em>-values larger than 0.5, and divide them by the number of simulations.</span></label><label><input type="radio" autocomplete="off" name="radio_TZKVYOMBMA" value="answer"><span>We can calculate the number of <em>p</em>-values in the first bar (which contains all 'significant' <em>p</em>-values from 0.00 to 0.05) and divide the <em>p</em>-values in this bar by the total number of simulations.</span></label><label><input type="radio" autocomplete="off" name="radio_TZKVYOMBMA" value=""><span>We can calculate the difference between <em>p</em>-values above 0.5 minus the <em>p</em>-values below 0.5, and divide this number by the total number of simulations.</span></label><label><input type="radio" autocomplete="off" name="radio_TZKVYOMBMA" value=""><span>We can calculate the difference between <em>p</em>-values above 0.5 minus the <em>p</em>-values below 0.05, and divide this number by the number of simulations.</span></label>
 </div>
 </div>
 <p><strong>Q2</strong>: Change the sample size on line 4 in the code from n &lt;- 26 to n &lt;- 51. Run the simulation by selecting all lines and pressing CTRL+Enter. What is the power in the simulation now that we have increased the sample size from 26 people to 51 people? Remember that simulations can sometimes yield slightly varying answers, so choose the answer option closest to the simulation results.</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_CZVUJNLOGY" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_CZVUJNLOGY" value=""><span>55%</span></label><label><input type="radio" autocomplete="off" name="radio_CZVUJNLOGY" value=""><span>60%</span></label><label><input type="radio" autocomplete="off" name="radio_CZVUJNLOGY" value="answer"><span>80%</span></label><label><input type="radio" autocomplete="off" name="radio_CZVUJNLOGY" value=""><span>95%</span></label>
+<div id="radio_QIMXCMURHW" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_QIMXCMURHW" value=""><span>55%</span></label><label><input type="radio" autocomplete="off" name="radio_QIMXCMURHW" value=""><span>60%</span></label><label><input type="radio" autocomplete="off" name="radio_QIMXCMURHW" value="answer"><span>80%</span></label><label><input type="radio" autocomplete="off" name="radio_QIMXCMURHW" value=""><span>95%</span></label>
 </div>
 </div>
 <p><strong>Q3</strong>: If you look at the distribution of <em>p</em>-values, what do you notice?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_KVYAYBFJGK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KVYAYBFJGK" value=""><span>The <em>p</em>-value distribution is exactly the same as with 50% power</span></label><label><input type="radio" autocomplete="off" name="radio_KVYAYBFJGK" value="answer"><span>The <em>p</em>-value distribution is much steeper than with 50% power</span></label><label><input type="radio" autocomplete="off" name="radio_KVYAYBFJGK" value=""><span>The <em>p</em>-value distribution is much flatter than with 50% power</span></label><label><input type="radio" autocomplete="off" name="radio_KVYAYBFJGK" value=""><span>The <em>p</em>-value distribution is much more normally distributed than with 50% power</span></label>
+<div id="radio_BSWAMMOENS" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BSWAMMOENS" value=""><span>The <em>p</em>-value distribution is exactly the same as with 50% power</span></label><label><input type="radio" autocomplete="off" name="radio_BSWAMMOENS" value="answer"><span>The <em>p</em>-value distribution is much steeper than with 50% power</span></label><label><input type="radio" autocomplete="off" name="radio_BSWAMMOENS" value=""><span>The <em>p</em>-value distribution is much flatter than with 50% power</span></label><label><input type="radio" autocomplete="off" name="radio_BSWAMMOENS" value=""><span>The <em>p</em>-value distribution is much more normally distributed than with 50% power</span></label>
 </div>
 </div>
 <p>Feel free to increase and decrease the sample size and see what happens if you run the simulation. When you are done exploring, make sure that n &lt;- 51 again in line 4 before you continue.</p>
 <p><strong>Q4</strong>: What would happen when there were no true difference between our simulated samples and the average score? In this situation, we have no probability to observe an effect, so you might say we have ‘0 power’. Formally, power is not defined when there is no true effect. However, we can casually refer to this as 0 power. Change the mean in the sample to 100 (i.e., set m &lt;- 106 to m &lt;- 100). There is now no difference between the mean in our sample, and the population value we are testing against in the one-sample <em>t</em>-test. Run the script again. What do you notice?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_PMXYHEMMYU" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_PMXYHEMMYU" value=""><span>The <em>p</em>-value distribution is exactly the same as with 50% powe</span></label><label><input type="radio" autocomplete="off" name="radio_PMXYHEMMYU" value=""><span>The <em>p</em>-value distribution is much steeper than with 50% power</span></label><label><input type="radio" autocomplete="off" name="radio_PMXYHEMMYU" value="answer"><span>The <em>p</em>-value distribution is basically completely flat (ignoring some minor variation due to random noise in the simulation)</span></label><label><input type="radio" autocomplete="off" name="radio_PMXYHEMMYU" value=""><span>The <em>p</em>-value distribution is normally (i.e., bell-shaped) distributed</span></label>
+<div id="radio_JNYPJUHIHE" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JNYPJUHIHE" value=""><span>The <em>p</em>-value distribution is exactly the same as with 50% powe</span></label><label><input type="radio" autocomplete="off" name="radio_JNYPJUHIHE" value=""><span>The <em>p</em>-value distribution is much steeper than with 50% power</span></label><label><input type="radio" autocomplete="off" name="radio_JNYPJUHIHE" value="answer"><span>The <em>p</em>-value distribution is basically completely flat (ignoring some minor variation due to random noise in the simulation)</span></label><label><input type="radio" autocomplete="off" name="radio_JNYPJUHIHE" value=""><span>The <em>p</em>-value distribution is normally (i.e., bell-shaped) distributed</span></label>
 </div>
 </div>
 <p>The question below builds on the simulation above where there was no true difference between the groups.</p>
 <p><strong>Q5</strong>: Look at the leftmost bar in the plot produced for Q4, and look at the frequency of <em>p</em>-values in this bar. What is the formal name for this bar?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_TCTOEYQMNS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TCTOEYQMNS" value=""><span>The power (or true positives)</span></label><label><input type="radio" autocomplete="off" name="radio_TCTOEYQMNS" value=""><span>The true negatives</span></label><label><input type="radio" autocomplete="off" name="radio_TCTOEYQMNS" value="answer"><span>The Type 1 error (or false positives)</span></label><label><input type="radio" autocomplete="off" name="radio_TCTOEYQMNS" value=""><span>The Type 2 error (or false negatives)</span></label>
+<div id="radio_IKCEPEIMQF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_IKCEPEIMQF" value=""><span>The power (or true positives)</span></label><label><input type="radio" autocomplete="off" name="radio_IKCEPEIMQF" value=""><span>The true negatives</span></label><label><input type="radio" autocomplete="off" name="radio_IKCEPEIMQF" value="answer"><span>The Type 1 error (or false positives)</span></label><label><input type="radio" autocomplete="off" name="radio_IKCEPEIMQF" value=""><span>The Type 2 error (or false negatives)</span></label>
 </div>
 </div>
 <p>Let’s take a look at just the <em>p</em>-values below 0.05. Bear with me for the next few steps – it will be worth it. Find the variable that determines how many bars there are, in the statement bars &lt;- 20 in line 8. Change it to bars &lt;- 100. We will now get 1 bar for <em>p</em>-values between 0 and 0.01, one bar for <em>p</em>-values between 0.01 and 0.02, and 100 bars in total. The red dotted line will now indicate the frequency of <em>p</em>-values when the null hypothesis is true, where every bar contains 1% of the total number of <em>p</em>-values. We only want to look at <em>p</em>-values below 0.05, and we will cut off the plot at 0.05. Change xlim = c(0, 1) to xlim = c(0, 0.05). Instead of seeing all <em>p</em>-values between 0 and 1, we will only see <em>p</em>-values between 0 and 0.05. Re-run the simulation (still with m &lt;- 100). We see the same uniform distribution, but now every bar contains 1% of the <em>p</em>-values, so the <em>p</em>-value distribution is very flat (we will zoom in on the y-axis later this assignment). The red line now clearly gives the frequency for each bar, assuming the null hypothesis is true.</p>
 <p>Change the mean in the simulation in line 3 to m &lt;- 107 (remember, n is still 51). Re-run the simulation. It’s clear we have very high power. Most <em>p</em>-values are in the left-most bar, which contains all <em>p</em>-values between 0.00 and 0.01.</p>
 <p><strong>Q6</strong>: The plot from the last simulation tells you that we have approximately 90.5% power (the number in your simulation might vary a bit due to random variation). This is the power if we use an alpha of 5%. But we can also use an alpha of 1%. What is the statistical power we have in the simulated studies when we would use an alpha of 1%, looking at the graph? Pick the answer closest to the answer from your simulations. Note that you can also compute the power for an alpha of 0.01 by changing p &lt; 0.05 to p &lt; 0.01 in line 15, just make sure to set it back to 0.05 before your continue.</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_UFTPSADMSV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UFTPSADMSV" value=""><span>~90%</span></label><label><input type="radio" autocomplete="off" name="radio_UFTPSADMSV" value="answer"><span>~75%</span></label><label><input type="radio" autocomplete="off" name="radio_UFTPSADMSV" value=""><span>~50%</span></label><label><input type="radio" autocomplete="off" name="radio_UFTPSADMSV" value=""><span>~5%</span></label>
+<div id="radio_GQQHYBWRJQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_GQQHYBWRJQ" value=""><span>~90%</span></label><label><input type="radio" autocomplete="off" name="radio_GQQHYBWRJQ" value="answer"><span>~75%</span></label><label><input type="radio" autocomplete="off" name="radio_GQQHYBWRJQ" value=""><span>~50%</span></label><label><input type="radio" autocomplete="off" name="radio_GQQHYBWRJQ" value=""><span>~5%</span></label>
 </div>
 </div>
 <p>To be able to look at the <em>p</em>-values around 0.03 and 0.04, we will zoom in on the y-axis as well. In the part of the code where the plot is draw, change ylim = c(0, nSims) to ylim = c(0, 10000). Re-run the script.</p>
@@ -845,30 +1084,30 @@ Figure&nbsp;1.12: Distribution of observed Cohen’s <em>d</em> effect sizes whe
 <p>In our simulations, we know whether there is a true effect or not, but in the real world, you don’t know. When you have very high power, use an alpha level of 0.05, and find a <em>p</em>-value of <em>p</em> = .045, the data is surprising, assuming the null hypothesis is true, but it is even <em>more</em> surprising, assuming the alternative hypothesis is true. This shows how a significant <em>p</em>-value is not always evidence for the alternative hypothesis.</p>
 <p><strong>Q7</strong>: When you know you have very high (e.g., 98%) power for the smallest effect size you care about, and you observe a <em>p</em>-value of 0.045, what is the correct conclusion?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_YXNAKBJGXF" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_YXNAKBJGXF" value=""><span>The effect is significant, and provides strong support for the alternative hypothesis.</span></label><label><input type="radio" autocomplete="off" name="radio_YXNAKBJGXF" value="answer"><span>The effect is significant, but it is without any doubt a Type 1 error.</span></label><label><input type="radio" autocomplete="off" name="radio_YXNAKBJGXF" value=""><span>With high power, you should use an alpha level that is smaller than 0.05, and therefore, this effect cannot be considered significant. </span></label><label><input type="radio" autocomplete="off" name="radio_YXNAKBJGXF" value="answer"><span>The effect is significant, but the data are more likely under the null hypothesis than under the alternative hypothesis.</span></label>
+<div id="radio_ODMICAXEER" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ODMICAXEER" value=""><span>The effect is significant, and provides strong support for the alternative hypothesis.</span></label><label><input type="radio" autocomplete="off" name="radio_ODMICAXEER" value="answer"><span>The effect is significant, but it is without any doubt a Type 1 error.</span></label><label><input type="radio" autocomplete="off" name="radio_ODMICAXEER" value=""><span>With high power, you should use an alpha level that is smaller than 0.05, and therefore, this effect cannot be considered significant. </span></label><label><input type="radio" autocomplete="off" name="radio_ODMICAXEER" value="answer"><span>The effect is significant, but the data are more likely under the null hypothesis than under the alternative hypothesis.</span></label>
 </div>
 </div>
 <p><strong>Q8</strong>: Play around with the sample size (n) and/or the mean (m) by changing the numerical values (and thus, vary the statistical power in the simulated studies). Look at the simulation result for the bar that contains <em>p</em>-values between 0.04 and 0.05. The red line indicates how many <em>p</em>-values would be found in this bar if the null hypothesis was true (and is always at 1%). At the very best, how much more likely is a <em>p</em>-value between 0.04 and 0.05 to come from a <em>p</em>-value distribution representing a true effect, than it is to come from a <em>p</em>-value distribution when there is no effect? You can answer this question by seeing how much higher the bar of <em>p</em>-values between 0.04 and 0.05 can become. If at best the bar in the simulation is five times as high at the red line (so the bar shows that 5% of <em>p</em>-values end up between 0.04 and 0.05, while the red line remains at 1%), then at best <em>p</em>-values between 0.04 and 0.05 are five times as likely when there is a true effect than when there is no true effect.</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_HSDLMJXHMN" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_HSDLMJXHMN" value=""><span>At best, <em>p</em>-values between 0.04 and 0.05 are equally likely under the alternative hypothesis, and under the null hypothesis.</span></label><label><input type="radio" autocomplete="off" name="radio_HSDLMJXHMN" value="answer"><span>At best, <em>p</em>-values between 0.04 and 0.05 are approximately 4 times more likely under the alternative hypothesis, than under the null hypothesis.</span></label><label><input type="radio" autocomplete="off" name="radio_HSDLMJXHMN" value=""><span>At best, <em>p</em>-values between 0.04 and 0.05 are ~10 times more likely under the alternative hypothesis, than under the null hypothesis.</span></label><label><input type="radio" autocomplete="off" name="radio_HSDLMJXHMN" value=""><span>At best, <em>p</em>-values between 0.04 and 0.05 are ~30 times more likely under the alternative hypothesis, than under the null hypothesis.</span></label>
+<div id="radio_KYCNXJCYUF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KYCNXJCYUF" value=""><span>At best, <em>p</em>-values between 0.04 and 0.05 are equally likely under the alternative hypothesis, and under the null hypothesis.</span></label><label><input type="radio" autocomplete="off" name="radio_KYCNXJCYUF" value="answer"><span>At best, <em>p</em>-values between 0.04 and 0.05 are approximately 4 times more likely under the alternative hypothesis, than under the null hypothesis.</span></label><label><input type="radio" autocomplete="off" name="radio_KYCNXJCYUF" value=""><span>At best, <em>p</em>-values between 0.04 and 0.05 are ~10 times more likely under the alternative hypothesis, than under the null hypothesis.</span></label><label><input type="radio" autocomplete="off" name="radio_KYCNXJCYUF" value=""><span>At best, <em>p</em>-values between 0.04 and 0.05 are ~30 times more likely under the alternative hypothesis, than under the null hypothesis.</span></label>
 </div>
 </div>
 <p>For this reason, statisticians warn that <em>p</em>-values just below 0.05 (e.g., between 0.04 and 0.05) are at the very best weak support for the alternative hypothesis. If you find <em>p</em>-values in this range, consider replicating the study, or if that’s not possible, interpret the result at least a bit cautiously. Of course, you can make a claim in a Neyman-Pearson approach that has at most a 5% Type 1 error rate. The Lindley’s paradox therefore nicely illustrates the difference between different philosophical approaches to statistical inferences.</p>
 </section><section id="questions-about-p-value-misconceptions" class="level3 webex-check webex-box" data-number="1.8.2"><h3 data-number="1.8.2" class="anchored" data-anchor-id="questions-about-p-value-misconceptions">
 <span class="header-section-number">1.8.2</span> Questions about <em>p</em>-value misconceptions</h3>
 <p>Answer each question. Then click the ‘Show Answers’ button at the bottom of this set of questions to check which questions you answered correctly.</p>
-<p><strong>Q1</strong>: When the sample size in each group of an independent <em>t</em>-test is 50 observations (see <a href="#fig-fig131" class="quarto-xref">Figure&nbsp;<span>1.6</span></a>), which statement is correct?</p>
+<p><strong>Q1</strong>: When the sample size in each group of an independent <em>t</em>-test is 50 observations (see <a href="#fig-fig131" class="quarto-xref">Figure&nbsp;<span>1.7</span></a>), which statement is correct?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_CMURPMBNTE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_CMURPMBNTE" value=""><span>The mean of the differences you will observe between the two groups is always 0.</span></label><label><input type="radio" autocomplete="off" name="radio_CMURPMBNTE" value=""><span>The mean of the differences you will observe between the two groups is always different from 0.</span></label><label><input type="radio" autocomplete="off" name="radio_CMURPMBNTE" value="answer"><span>Observing a mean difference of +0.5 or -0.5 is considered surprising, assuming the null hypothesis is true.</span></label><label><input type="radio" autocomplete="off" name="radio_CMURPMBNTE" value=""><span>Observing a mean difference of +0.1 or -0.1 is considered surprising, assuming the null hypothesis is true.</span></label>
+<div id="radio_CEGVXCBEAA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CEGVXCBEAA" value=""><span>The mean of the differences you will observe between the two groups is always 0.</span></label><label><input type="radio" autocomplete="off" name="radio_CEGVXCBEAA" value=""><span>The mean of the differences you will observe between the two groups is always different from 0.</span></label><label><input type="radio" autocomplete="off" name="radio_CEGVXCBEAA" value="answer"><span>Observing a mean difference of +0.5 or -0.5 is considered surprising, assuming the null hypothesis is true.</span></label><label><input type="radio" autocomplete="off" name="radio_CEGVXCBEAA" value=""><span>Observing a mean difference of +0.1 or -0.1 is considered surprising, assuming the null hypothesis is true.</span></label>
 </div>
 </div>
-<p><strong>Q2:</strong> In what sense are the null models in <a href="#fig-fig131" class="quarto-xref">Figure&nbsp;<span>1.6</span></a> and <a href="#fig-fig132" class="quarto-xref">Figure&nbsp;<span>1.7</span></a> similar, and in what sense are they different? Note that these plots do not contain <em>t</em>-values, but you need to infer what the <em>t</em>-values are for these distributions.</p>
+<p><strong>Q2:</strong> In what sense are the null models in <a href="#fig-fig131" class="quarto-xref">Figure&nbsp;<span>1.7</span></a> and <a href="#fig-fig132" class="quarto-xref">Figure&nbsp;<span>1.8</span></a> similar, and in what sense are they different? Note that these plots do not contain <em>t</em>-values, but you need to infer what the <em>t</em>-values are for these distributions.</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_RZFFMGEWDJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RZFFMGEWDJ" value="answer"><span>In both cases, the distributions are centered on zero, and the critical <em>t</em>-value is between 1.96 and 2 (for a two-sided test, depending on the sample size). But the larger the sample size, the closer to 0 the mean differences fall that are considered ‘surprising’.</span></label><label><input type="radio" autocomplete="off" name="radio_RZFFMGEWDJ" value=""><span>In both cases, a <em>t</em>-value of 0 is the most likely outcome, but the critical <em>t</em>-value is around 0.4 for n = 50, and around 0.05 for n = 5000.</span></label><label><input type="radio" autocomplete="off" name="radio_RZFFMGEWDJ" value=""><span>In both cases, means will vary in exactly the same way around 0, but the Type 1 error rate is much smaller when n = 5000 than when n = 50.</span></label><label><input type="radio" autocomplete="off" name="radio_RZFFMGEWDJ" value=""><span>Because the standard error is much larger for n = 50 than for n = 5000, it is much more likely that the null hypothesis is true for n = 50.</span></label>
+<div id="radio_ZRBCMNVDRG" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZRBCMNVDRG" value="answer"><span>In both cases, the distributions are centered on zero, and the critical <em>t</em>-value is between 1.96 and 2 (for a two-sided test, depending on the sample size). But the larger the sample size, the closer to 0 the mean differences fall that are considered ‘surprising’.</span></label><label><input type="radio" autocomplete="off" name="radio_ZRBCMNVDRG" value=""><span>In both cases, a <em>t</em>-value of 0 is the most likely outcome, but the critical <em>t</em>-value is around 0.4 for n = 50, and around 0.05 for n = 5000.</span></label><label><input type="radio" autocomplete="off" name="radio_ZRBCMNVDRG" value=""><span>In both cases, means will vary in exactly the same way around 0, but the Type 1 error rate is much smaller when n = 5000 than when n = 50.</span></label><label><input type="radio" autocomplete="off" name="radio_ZRBCMNVDRG" value=""><span>Because the standard error is much larger for n = 50 than for n = 5000, it is much more likely that the null hypothesis is true for n = 50.</span></label>
 </div>
 </div>
 <p><strong>Q3:</strong> You can play around with the alternative and null models in this online app: <a href="http://shiny.ieis.tue.nl/d_p_power/" class="uri">http://shiny.ieis.tue.nl/d_p_power/</a>. The app allows you to specify the sample size in each group of an independent <em>t</em>-test (from 2 to infinity), the mean difference (from 0 to 2), and the alpha level. In the plot, the red areas visualize Type 1 errors. The blue area visualizes the Type 2 error rate. The app also tells you the critical value: There is a vertical line (with n = 50 this line falls at a mean difference of 0.4) and a verbal label that says: “Effects larger than 0.4 will be statistically significant”. Note that the same is true for effects smaller than -0.4, even though there is no second label there, but the app shows the situation for a two-sided independent <em>t</em>-test.</p>
@@ -876,47 +1115,47 @@ Figure&nbsp;1.12: Distribution of observed Cohen’s <em>d</em> effect sizes whe
 <p>The app also plots three graphs that illustrate the power curves as a function of different alpha levels, sample sizes, or true mean differences. Play around in the app by changing the values. Get a feel for how each variable impacts the null and alternative models, the mean difference that will be statistically significant, and the Type 1 and Type 2 error rates.</p>
 <p>Open the app, and make sure it is set to the default settings of a sample size of 50 and an alpha level of 0.05. Look at the distribution of the null model. Set the sample size to 2. Set the sample size to 5000. The app will not allow you to plot data for a ‘group’ size of 1, but with n = 2 you will get a pretty good idea of the range of values you can expect when the true effect is 0, and when you collect single observations (n = 1). Given your experiences with the app as you change different parameters, which statement is true?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_EVTFTIWHAF" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_EVTFTIWHAF" value=""><span>When the null hypothesis is true and the standard deviation is 1, if you randomly take 1 observation from each group and calculate the difference score, the differences will fall between -0.4 and 0.4 for 95% of the pairs of observations you will draw.</span></label><label><input type="radio" autocomplete="off" name="radio_EVTFTIWHAF" value="answer"><span>When the null hypothesis is true and the standard deviation is 1, with n = 50 per group, 95% of studies where data is collected will observe in the long run a mean difference between -0.4 and 0.4.</span></label><label><input type="radio" autocomplete="off" name="radio_EVTFTIWHAF" value=""><span>In any study with n = 50 per group, even when the SD is unknown and it is not known if the null hypothesis is true, you should rarely observe a mean difference more extreme than -0.4 or 0.4.</span></label><label><input type="radio" autocomplete="off" name="radio_EVTFTIWHAF" value=""><span>As the sample size increases, the expected distribution of means become narrower for the null model, but not for the alternative model.</span></label>
+<div id="radio_VCJKHVOKRW" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VCJKHVOKRW" value=""><span>When the null hypothesis is true and the standard deviation is 1, if you randomly take 1 observation from each group and calculate the difference score, the differences will fall between -0.4 and 0.4 for 95% of the pairs of observations you will draw.</span></label><label><input type="radio" autocomplete="off" name="radio_VCJKHVOKRW" value="answer"><span>When the null hypothesis is true and the standard deviation is 1, with n = 50 per group, 95% of studies where data is collected will observe in the long run a mean difference between -0.4 and 0.4.</span></label><label><input type="radio" autocomplete="off" name="radio_VCJKHVOKRW" value=""><span>In any study with n = 50 per group, even when the SD is unknown and it is not known if the null hypothesis is true, you should rarely observe a mean difference more extreme than -0.4 or 0.4.</span></label><label><input type="radio" autocomplete="off" name="radio_VCJKHVOKRW" value=""><span>As the sample size increases, the expected distribution of means become narrower for the null model, but not for the alternative model.</span></label>
 </div>
 </div>
 <p><strong>Q4:</strong> Open the app once more with the default settings. Set the slider for the alpha level to 0.01 (while keeping the mean difference at 0.5 and the sample size at 50). Compared to the critical value when alpha = 0.05, which statement is true?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_SZPGZLTEGP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_SZPGZLTEGP" value=""><span>Compared to an alpha of 0.05, only <em>less</em> extreme values are considered surprising when an alpha of 0.01 is used, and only differences larger than 0.53 scale points (or smaller than -0.53) will now be statistically significant.</span></label><label><input type="radio" autocomplete="off" name="radio_SZPGZLTEGP" value=""><span>Compared to an alpha of 0.05, only <em>less</em> extreme values are considered surprising when an alpha of 0.01 is used, and only differences larger than 0.33 scale points (or smaller than -0.33) will now be statistically significant.</span></label><label><input type="radio" autocomplete="off" name="radio_SZPGZLTEGP" value="answer"><span>Compared to an alpha of 0.05, only <em>more</em> extreme values are considered surprising when an alpha of 0.01 is used, and only differences larger than 0.53 scale points (or smaller than -0.53) will be statistically significant.</span></label><label><input type="radio" autocomplete="off" name="radio_SZPGZLTEGP" value=""><span>Compared to an alpha of 0.05, only <em>more</em> extreme values are considered surprising when an alpha of 0.01 is used, and only differences larger than 0.33 scale points (or smaller than -0.33) will now be statistically significant.</span></label>
+<div id="radio_DDFBXQFZWA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DDFBXQFZWA" value=""><span>Compared to an alpha of 0.05, only <em>less</em> extreme values are considered surprising when an alpha of 0.01 is used, and only differences larger than 0.53 scale points (or smaller than -0.53) will now be statistically significant.</span></label><label><input type="radio" autocomplete="off" name="radio_DDFBXQFZWA" value=""><span>Compared to an alpha of 0.05, only <em>less</em> extreme values are considered surprising when an alpha of 0.01 is used, and only differences larger than 0.33 scale points (or smaller than -0.33) will now be statistically significant.</span></label><label><input type="radio" autocomplete="off" name="radio_DDFBXQFZWA" value="answer"><span>Compared to an alpha of 0.05, only <em>more</em> extreme values are considered surprising when an alpha of 0.01 is used, and only differences larger than 0.53 scale points (or smaller than -0.53) will be statistically significant.</span></label><label><input type="radio" autocomplete="off" name="radio_DDFBXQFZWA" value=""><span>Compared to an alpha of 0.05, only <em>more</em> extreme values are considered surprising when an alpha of 0.01 is used, and only differences larger than 0.33 scale points (or smaller than -0.33) will now be statistically significant.</span></label>
 </div>
 </div>
 <p><strong>Q5:</strong> Why can’t you conclude that the null hypothesis is true, when you observe a statistically non-significant <em>p</em>-value (<em>p</em> &gt; alpha)?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_ZDPEXORRRV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZDPEXORRRV" value=""><span>When calculating <em>p</em>-values you always need to take the prior probability into account.</span></label><label><input type="radio" autocomplete="off" name="radio_ZDPEXORRRV" value=""><span>You need to acknowledge the probability that you have observed a Type 1 error.</span></label><label><input type="radio" autocomplete="off" name="radio_ZDPEXORRRV" value=""><span>The alternative hypothesis is never true.</span></label><label><input type="radio" autocomplete="off" name="radio_ZDPEXORRRV" value="answer"><span>You need to acknowledge the probability that you have observed a Type 2 error.</span></label>
+<div id="radio_UZHCZHSSJS" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_UZHCZHSSJS" value=""><span>When calculating <em>p</em>-values you always need to take the prior probability into account.</span></label><label><input type="radio" autocomplete="off" name="radio_UZHCZHSSJS" value=""><span>You need to acknowledge the probability that you have observed a Type 1 error.</span></label><label><input type="radio" autocomplete="off" name="radio_UZHCZHSSJS" value=""><span>The alternative hypothesis is never true.</span></label><label><input type="radio" autocomplete="off" name="radio_UZHCZHSSJS" value="answer"><span>You need to acknowledge the probability that you have observed a Type 2 error.</span></label>
 </div>
 </div>
 <p><strong>Q6:</strong> Why can’t you conclude that the alternative hypothesis is true, when you observe a statistically significant <em>p</em>-value (<em>p</em> &lt; alpha)?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_EMQMBHTRFL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_EMQMBHTRFL" value=""><span>When calculating <em>p</em>-values you always need to take the prior probability into account.</span></label><label><input type="radio" autocomplete="off" name="radio_EMQMBHTRFL" value="answer"><span>You need to acknowledge the probability that you have observed a Type 1 error.</span></label><label><input type="radio" autocomplete="off" name="radio_EMQMBHTRFL" value=""><span>The alternative hypothesis is never true.</span></label><label><input type="radio" autocomplete="off" name="radio_EMQMBHTRFL" value=""><span>You need to acknowledge the probability that you have observed a Type 2 error.</span></label>
+<div id="radio_LUQNESPPEZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_LUQNESPPEZ" value=""><span>When calculating <em>p</em>-values you always need to take the prior probability into account.</span></label><label><input type="radio" autocomplete="off" name="radio_LUQNESPPEZ" value="answer"><span>You need to acknowledge the probability that you have observed a Type 1 error.</span></label><label><input type="radio" autocomplete="off" name="radio_LUQNESPPEZ" value=""><span>The alternative hypothesis is never true.</span></label><label><input type="radio" autocomplete="off" name="radio_LUQNESPPEZ" value=""><span>You need to acknowledge the probability that you have observed a Type 2 error.</span></label>
 </div>
 </div>
 <p><strong>Q7:</strong> A common concern when interpreting <em>p</em>-values is that ‘significant’ in normal language implies ‘important’, and thus a ‘significant’ effect is interpreted as an ‘important’ effect. However, <strong>the question whether an effect is important is completely orthogonal to the question whether it is different from zero, or even how large the effect is</strong>. Not all effects have practical impact. The smaller the effect, the less likely such effects will be noticed by individuals, but such effects might still have a large impact on a societal level. Therefore, the general take home message is that <strong>statistical significance does not answer the question whether an effect matters in practice, or is ‘practically important’</strong>. To answer the question whether an effect matters, you need to present a <strong>cost-benefit analysis</strong>.</p>
 <p>Go to the app: <a href="http://shiny.ieis.tue.nl/d_p_power/" class="uri">http://shiny.ieis.tue.nl/d_p_power/</a>. Set the sample size to 50000, the mean difference to 0.5, and the alpha level to 0.05. Which effects will, when observed, be statistically different from 0?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_HIXAAGICFJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_HIXAAGICFJ" value="answer"><span>Effects more extreme than -0.01 and 0.01</span></label><label><input type="radio" autocomplete="off" name="radio_HIXAAGICFJ" value=""><span>Effects more extreme than -0.04 and 0.04</span></label><label><input type="radio" autocomplete="off" name="radio_HIXAAGICFJ" value=""><span>Effects more extreme than -0.05 and 0.05</span></label><label><input type="radio" autocomplete="off" name="radio_HIXAAGICFJ" value=""><span>Effects more extreme than -0.12 and 0.12</span></label>
+<div id="radio_JYBVKNYRXK" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JYBVKNYRXK" value="answer"><span>Effects more extreme than -0.01 and 0.01</span></label><label><input type="radio" autocomplete="off" name="radio_JYBVKNYRXK" value=""><span>Effects more extreme than -0.04 and 0.04</span></label><label><input type="radio" autocomplete="off" name="radio_JYBVKNYRXK" value=""><span>Effects more extreme than -0.05 and 0.05</span></label><label><input type="radio" autocomplete="off" name="radio_JYBVKNYRXK" value=""><span>Effects more extreme than -0.12 and 0.12</span></label>
 </div>
 </div>
 <p>If we plot the null model for a very large sample size (e.g., n = 10000 per group) we see that even very small mean differences (differences more extreme than a mean difference of 0.04) will be considered ‘surprising’. This still means that if there really is no difference in the population, you will observe differences larger than 0.04 less than 5% of the time, in the long run, and 95% of the observed differences will be smaller than a mean difference of 0.04. But it becomes more difficult to argue for the practical significance of such effects. Imagine that a specific intervention is successful in changing people’s spending behavior, and when implementing some intervention people save 12 cents per year. It is difficult to argue how this effect will make any individual happier. However, if this money is combined, it will yield over 2 million, which could be used to treat diseases in developing countries, where it would have a real impact. The cost of the intervention might be considered too high if the goal is to make individuals happier, but it might be consider worthwhile if the goal is to raise 2 million for charity.</p>
 <p>Not all effects in psychology are additive (we cannot combine or transfer an increase in happiness of 0.04 scale points), so it is often more difficult to argue for the importance of small effects in subjective feelings. A cost-benefit analysis might show small effects matter a lot, but whether or not this is the case cannot be inferred from a <em>p</em>-value. Instead, you need to report and interpret the <a href="06-effectsize.html">effect size</a>,</p>
 <p><strong>Q8:</strong> Let’s assume that the random number generator in R works, and we use rnorm(n = 50, mean = 0, sd = 1) to generate 50 observations, and the mean of these observations is 0.5, which in a one-sample <em>t</em>-test against an effect of 0 yields a <em>p</em>-value of 0.03, which is smaller than the alpha level (which we have set to 0.05). What is the probability that we have observed a significant difference (<em>p</em> &lt; alpha) just by chance?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_ANQXXBHCGI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ANQXXBHCGI" value=""><span>3%</span></label><label><input type="radio" autocomplete="off" name="radio_ANQXXBHCGI" value=""><span>5%</span></label><label><input type="radio" autocomplete="off" name="radio_ANQXXBHCGI" value=""><span>95%</span></label><label><input type="radio" autocomplete="off" name="radio_ANQXXBHCGI" value="answer"><span>100%</span></label>
+<div id="radio_LIPEJRRBWR" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_LIPEJRRBWR" value=""><span>3%</span></label><label><input type="radio" autocomplete="off" name="radio_LIPEJRRBWR" value=""><span>5%</span></label><label><input type="radio" autocomplete="off" name="radio_LIPEJRRBWR" value=""><span>95%</span></label><label><input type="radio" autocomplete="off" name="radio_LIPEJRRBWR" value="answer"><span>100%</span></label>
 </div>
 </div>
 <p><strong>Q9:</strong> Which statement is true?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_AHICGGFWWM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_AHICGGFWWM" value=""><span>The probability that a replication study will yield a significant result is 1-<em>p</em>.</span></label><label><input type="radio" autocomplete="off" name="radio_AHICGGFWWM" value=""><span>The probability that a replication study will yield a significant result is 1-<em>p</em> multiplied by the probability that the null hypothesis is true.</span></label><label><input type="radio" autocomplete="off" name="radio_AHICGGFWWM" value="answer"><span>The probability that a replication study will yield a significant result is equal to the statistical power of the replication study (if there is a true effect), or the alpha level (if there is no true effect).</span></label><label><input type="radio" autocomplete="off" name="radio_AHICGGFWWM" value=""><span>The probability that a replication study will yield a significant result is equal to the statistical power of the replication study + the alpha level.</span></label>
+<div id="radio_JPYHHOELXQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JPYHHOELXQ" value=""><span>The probability that a replication study will yield a significant result is 1-<em>p</em>.</span></label><label><input type="radio" autocomplete="off" name="radio_JPYHHOELXQ" value=""><span>The probability that a replication study will yield a significant result is 1-<em>p</em> multiplied by the probability that the null hypothesis is true.</span></label><label><input type="radio" autocomplete="off" name="radio_JPYHHOELXQ" value="answer"><span>The probability that a replication study will yield a significant result is equal to the statistical power of the replication study (if there is a true effect), or the alpha level (if there is no true effect).</span></label><label><input type="radio" autocomplete="off" name="radio_JPYHHOELXQ" value=""><span>The probability that a replication study will yield a significant result is equal to the statistical power of the replication study + the alpha level.</span></label>
 </div>
 </div>
 <p>This question is conceptually very similar to that asked by Tversky and Kahneman <span class="citation" data-cites="tversky_belief_1971">(<a href="references.html#ref-tversky_belief_1971" role="doc-biblioref">1971</a>)</span> in article ‘Belief in the law of small numbers’:</p>
@@ -927,7 +1166,7 @@ Figure&nbsp;1.12: Distribution of observed Cohen’s <em>d</em> effect sizes whe
 <img src="images/belieflawsmallnumers.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-smallnumbers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.13: Screenshot of first paragraph in Tversky and Kahneman, 1971.
+Figure&nbsp;1.14: Screenshot of first paragraph in Tversky and Kahneman, 1971.
 </figcaption></figure>
 </div>
 </div>
@@ -938,32 +1177,32 @@ Figure&nbsp;1.13: Screenshot of first paragraph in Tversky and Kahneman, 1971.
 <p>Tversky and Kahneman argue a reasonable answer is 48%, but the only correct response is the same as the correct response to question 9, and the exact probability cannot be known <span class="citation" data-cites="miller_what_2009">(<a href="references.html#ref-miller_what_2009" role="doc-biblioref">Miller, 2009</a>)</span>.</p>
 <p><strong>Q10:</strong> Does a non-significant <em>p</em>-value (i.e., <em>p</em> = 0.65) mean that the null hypothesis is true?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_TDGLATAXCC" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TDGLATAXCC" value="answer"><span>No - the result could be a Type 2 error, or a false negative.</span></label><label><input type="radio" autocomplete="off" name="radio_TDGLATAXCC" value=""><span>Yes, because it is a true negative.</span></label><label><input type="radio" autocomplete="off" name="radio_TDGLATAXCC" value=""><span>Yes, if the <em>p</em>-value is larger than the alpha level then the null hypothesis is true.</span></label><label><input type="radio" autocomplete="off" name="radio_TDGLATAXCC" value=""><span>No, because you need at least two non-significant <em>p</em>-values to conclude that the null hypothesis is true.</span></label>
+<div id="radio_VCGPUMENVY" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VCGPUMENVY" value="answer"><span>No - the result could be a Type 2 error, or a false negative.</span></label><label><input type="radio" autocomplete="off" name="radio_VCGPUMENVY" value=""><span>Yes, because it is a true negative.</span></label><label><input type="radio" autocomplete="off" name="radio_VCGPUMENVY" value=""><span>Yes, if the <em>p</em>-value is larger than the alpha level then the null hypothesis is true.</span></label><label><input type="radio" autocomplete="off" name="radio_VCGPUMENVY" value=""><span>No, because you need at least two non-significant <em>p</em>-values to conclude that the null hypothesis is true.</span></label>
 </div>
 </div>
 <p><strong>Q11:</strong> What is a correct way to present a non-significant <em>p</em>-value (e.g., <em>p</em> = 0.34 assuming an alpha level of 0.05 is used in an independent <em>t</em>-test)?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_VYJMJRGEKE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_VYJMJRGEKE" value=""><span>The null hypothesis was confirmed, <em>p</em> &gt; 0.05.</span></label><label><input type="radio" autocomplete="off" name="radio_VYJMJRGEKE" value=""><span>There was no difference between the two conditions, <em>p</em> &gt; 0.05.</span></label><label><input type="radio" autocomplete="off" name="radio_VYJMJRGEKE" value="answer"><span>The observed difference was not statistically different from 0.</span></label><label><input type="radio" autocomplete="off" name="radio_VYJMJRGEKE" value=""><span>The null hypothesis is true.</span></label>
+<div id="radio_TRFYAHIAYH" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TRFYAHIAYH" value=""><span>The null hypothesis was confirmed, <em>p</em> &gt; 0.05.</span></label><label><input type="radio" autocomplete="off" name="radio_TRFYAHIAYH" value=""><span>There was no difference between the two conditions, <em>p</em> &gt; 0.05.</span></label><label><input type="radio" autocomplete="off" name="radio_TRFYAHIAYH" value="answer"><span>The observed difference was not statistically different from 0.</span></label><label><input type="radio" autocomplete="off" name="radio_TRFYAHIAYH" value=""><span>The null hypothesis is true.</span></label>
 </div>
 </div>
 <p><strong>Q12:</strong> Does observing a significant <em>p</em>-value (<em>p</em> &lt; .05) mean that the null hypothesis is false?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_CWAQAMOCGP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_CWAQAMOCGP" value=""><span>No, because <em>p</em> &lt; .05 only means that the alternative is true, not that the null hypothesis is wrong.</span></label><label><input type="radio" autocomplete="off" name="radio_CWAQAMOCGP" value="answer"><span>No, because <em>p</em>-values are never a statement about the probability of a hypothesis or theory.</span></label><label><input type="radio" autocomplete="off" name="radio_CWAQAMOCGP" value=""><span>Yes, because an exceptionally rare event has occurred.</span></label><label><input type="radio" autocomplete="off" name="radio_CWAQAMOCGP" value=""><span>Yes, because the difference is statistically significant.</span></label>
+<div id="radio_BUNKVNVTED" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BUNKVNVTED" value=""><span>No, because <em>p</em> &lt; .05 only means that the alternative is true, not that the null hypothesis is wrong.</span></label><label><input type="radio" autocomplete="off" name="radio_BUNKVNVTED" value="answer"><span>No, because <em>p</em>-values are never a statement about the probability of a hypothesis or theory.</span></label><label><input type="radio" autocomplete="off" name="radio_BUNKVNVTED" value=""><span>Yes, because an exceptionally rare event has occurred.</span></label><label><input type="radio" autocomplete="off" name="radio_BUNKVNVTED" value=""><span>Yes, because the difference is statistically significant.</span></label>
 </div>
 </div>
 <p><strong>Q13:</strong> Is a statistically significant effect always a practically important effect?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_MYAVATQHUB" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_MYAVATQHUB" value=""><span>No, because in extremely large samples, extremely small effects can be statistically significant, and small effects are never practically important.</span></label><label><input type="radio" autocomplete="off" name="radio_MYAVATQHUB" value=""><span>No, because the alpha level could in theory be set to 0.20, and in that case a significant effect is not practically important.</span></label><label><input type="radio" autocomplete="off" name="radio_MYAVATQHUB" value="answer"><span>No, because how important an effect is depends on a cost-benefit analysis, not on how surprising the data is under the null hypothesis.</span></label><label><input type="radio" autocomplete="off" name="radio_MYAVATQHUB" value=""><span>All of the above are true.</span></label>
+<div id="radio_BGTILJRJUX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BGTILJRJUX" value=""><span>No, because in extremely large samples, extremely small effects can be statistically significant, and small effects are never practically important.</span></label><label><input type="radio" autocomplete="off" name="radio_BGTILJRJUX" value=""><span>No, because the alpha level could in theory be set to 0.20, and in that case a significant effect is not practically important.</span></label><label><input type="radio" autocomplete="off" name="radio_BGTILJRJUX" value="answer"><span>No, because how important an effect is depends on a cost-benefit analysis, not on how surprising the data is under the null hypothesis.</span></label><label><input type="radio" autocomplete="off" name="radio_BGTILJRJUX" value=""><span>All of the above are true.</span></label>
 </div>
 </div>
 <p><strong>Q14:</strong> What is the correct definition of a <em>p</em>-value?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_YXWPVMXDCE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_YXWPVMXDCE" value=""><span>A <em>p</em>-value is the probability that the null hypothesis is true, given data that is as extreme or more extreme than the data you have observed. </span></label><label><input type="radio" autocomplete="off" name="radio_YXWPVMXDCE" value=""><span>A <em>p</em>-value is the probability that the alternative hypothesis is true, given data that is as extreme or more extreme than the data you have observed.</span></label><label><input type="radio" autocomplete="off" name="radio_YXWPVMXDCE" value=""><span>A <em>p</em>-value is the probability of observing data that is as extreme or more extreme than the data you have observed, assuming the alternative hypothesis is true.</span></label><label><input type="radio" autocomplete="off" name="radio_YXWPVMXDCE" value="answer"><span>A <em>p</em>-value is the probability of observing data that is as extreme or more extreme than the data you have observed, assuming the null hypothesis is true. </span></label>
+<div id="radio_SLLEVWGDAB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_SLLEVWGDAB" value=""><span>A <em>p</em>-value is the probability that the null hypothesis is true, given data that is as extreme or more extreme than the data you have observed. </span></label><label><input type="radio" autocomplete="off" name="radio_SLLEVWGDAB" value=""><span>A <em>p</em>-value is the probability that the alternative hypothesis is true, given data that is as extreme or more extreme than the data you have observed.</span></label><label><input type="radio" autocomplete="off" name="radio_SLLEVWGDAB" value=""><span>A <em>p</em>-value is the probability of observing data that is as extreme or more extreme than the data you have observed, assuming the alternative hypothesis is true.</span></label><label><input type="radio" autocomplete="off" name="radio_SLLEVWGDAB" value="answer"><span>A <em>p</em>-value is the probability of observing data that is as extreme or more extreme than the data you have observed, assuming the null hypothesis is true. </span></label>
 </div>
 </div>
 </section><section id="open-questions" class="level3" data-number="1.8.3"><h3 data-number="1.8.3" class="anchored" data-anchor-id="open-questions">
@@ -1328,383 +1567,255 @@ function move_sidebar() {
 move_sidebar();
 window.onresize = move_sidebar;
 </script><script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
       });
     }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
         }
-        return container.innerHTML
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1712,185 +1823,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./index.html" class="pagination-link" aria-label="Overview">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Overview</span>
       </a>          

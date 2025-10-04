@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.7.32">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="This open educational resource contains information to improve statistical inferences, design better experiments, and report scientific research more transparently.">
 <title>17&nbsp; Replication Studies – Improving Your Statistical Inferences</title>
@@ -19,8 +19,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -31,7 +32,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -84,17 +85,20 @@ div.csl-indent {
 <link href="./references.html" rel="next">
 <link href="./16-confirmationbias.html" rel="prev">
 <link href="./images/logos/favicon.ico" rel="icon">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-c3c2c9e745155556954bc4da23476b10.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-8c0058e5e3bd740c0d6c45014de01b5a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-3327e73e14e9b88e17095f9410adaab4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-8c0058e5e3bd740c0d6c45014de01b5a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -155,7 +159,169 @@ window.Quarto = {
 <link rel="stylesheet" href="include/style.css">
 <link rel="stylesheet" href="include/webex.css">
 </head>
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
@@ -375,7 +541,7 @@ Figure&nbsp;17.1: Results of the Reproducibility Project:Psychology, with replic
 </blockquote>
 <p>A replication study is an experiment where the methods and procedures in a previous study are repeated by collecting new data. Typically, the term <strong>direct replication study</strong> is used when the methods and measures are as similar to the earlier study as possible. In a <strong>conceptual replication study</strong> a researcher intentionally introduces differences with the original study with the aim to test the generalization of the effect, either because they aim to systematically explore the impact of this change, or because they are not able to use the same methods and procedures. It is important to distinguish replication, where new data is collected, from <strong>reproducibility</strong>, where the same data is used to reproduce the reported results. In reproducibility checks the goal is to examine the presence of errors in the analysis files. Confusingly, the large-scale collaborative research project where 100 studies in psychology were replicated, and which is often considered an important contributor to the <strong>replication crisis</strong>, was called the Reproducibility Project: Psychology <span class="citation" data-cites="opensciencecollaboration_estimating_2015">(<a href="references.html#ref-opensciencecollaboration_estimating_2015" role="doc-biblioref">Open Science Collaboration, 2015</a>)</span>. It should have been called the Replication Project: Psychology. Our apologies.</p>
 <p>The goal of direct replication studies is first of all to identify Type 1 or Type 2 errors in the literature. In any original study with an alpha of 5% and a statistical power of 80% there is a probability of making an erroneous claim. Direct replication studies (especially those with low error rates) have the goal to identify these errors in the scientific literature, which is an important part of having a reliable knowledge base. It is especially important given that the scientific literature is biased, which increases the probability that a published claim is a Type 1 error. Schmidt <span class="citation" data-cites="schmidt_shall_2009">(<a href="references.html#ref-schmidt_shall_2009" role="doc-biblioref">2009</a>)</span> also notes that claims can be erroneous because they were based on fraudulent data. Although direct replication studies can not identify fraud, they can point out erroneous claims due to fraud.</p>
-<p>The second important goal of direct replications is to identify factors in the study that were deemed irrelevant, but were crucial in generating the observed data <span class="citation" data-cites="tunc_falsificationist_2023">(<a href="references.html#ref-tunc_falsificationist_2023" role="doc-biblioref">Tunç &amp; Tunç, 2023</a>)</span>. For example, researchers might discover that an original and replication study yielded different results because the experimenter in one study treated the participants in a much more friendly manner than the experimenter in the other study. Such details are typically not reported in the method section, as they are deemed irrelevant, but direct replication studies might identify such factors. This highlights how replication studies are never identical in the social sciences. They are designed to be similar in all ways that a researcher thinks will matter. But not all factors deemed irrelevant will by irrelevant (and vice versa).</p>
+<p>The second important goal of direct replications is to identify factors in the study that were deemed irrelevant, but were crucial in generating the observed data <span class="citation" data-cites="tunc_falsificationist_2023">(<a href="references.html#ref-tunc_falsificationist_2023" role="doc-biblioref">Tunç &amp; Tunç, 2023</a>)</span>. For example, researchers might discover that an original and replication study yielded different results because the experimenter in one study treated the participants in a much more friendly manner than the experimenter in the other study. Such details are typically not reported in the method section, as they are deemed irrelevant, but direct replication studies might identify such factors. This highlights how replication studies are never identical in the social sciences. They are designed to be similar in all ways that a researcher thinks will matter. But not all factors deemed irrelevant will be irrelevant (and vice versa).</p>
 <p>The goal of conceptual replication studies is to examine the generalizability of effects <span class="citation" data-cites="sidman_tactics_1960">(<a href="references.html#ref-sidman_tactics_1960" role="doc-biblioref">Sidman, 1960</a>)</span>. Researchers intentionally vary factors in the experiment to examine if this leads to variability in the results. Sometimes this variability is theoretically predicted, and sometimes researchers simply want to see what will happen. I would define a direct replication as a study where a researcher has the goal to not introduce variability in the effect size compared to the original study, while in a conceptual replication variability is introduced intentionally with the goal to test the generalizability of the effect. This distinction means that it is possible that what one researcher aims to be a direct replication is seen by a peer as a conceptual replication. For example, if a researcher sees no reason why an effect tested in Germany would not be identical in The Netherlands, they will consider it a direct replication. A peer might believe there are theoretically relevant differences between the two countries that make this a conceptual replication, as they would interpret the study as intentionally introducing variability by not keeping an important factor constant. The only way to clarify which factors are deemed theoretically relevant is to write a <strong>constraints on generalizability</strong> statement in the discussion where researchers specify which contexts they theoretically expect the effect to replicate in, and where variability in the results would not be considered problematic for their original claim <span class="citation" data-cites="simons_constraints_2017">(<a href="references.html#ref-simons_constraints_2017" role="doc-biblioref">Simons et al., 2017</a>)</span>.</p>
 <p>It should be clear that the goals of replication studies are rather modest. At the same time, they are essential for a well-functioning empirical science. They provide a tool to identify false positive or false negative results, and can reveal variability across contexts that might falsify theoretical predictions, or lead to the generation of new theories. Being able to systematically replicate and extend a basic effect is one of the most important ways in which scientists develop and test theories. Although there are other approaches to generating reliable knowledge, such as <strong>triangulation</strong> where the same theory is tested in different but complementary ways, in practice the vast majority of scientifically established claims are based on replicable effects.</p>
 <p>Not all researchers agree that their science has inter-subjectively repeatable observations. In what is called the ‘crisis in social psychology’ Gergen <span class="citation" data-cites="gergen_social_1973">(<a href="references.html#ref-gergen_social_1973" role="doc-biblioref">1973</a>)</span> argued social psychology was not a cumulative science:</p>
@@ -385,7 +551,7 @@ Figure&nbsp;17.1: Results of the Reproducibility Project:Psychology, with replic
 <p>The belief that basic claims in psychology are not repeatable events lead to <strong>social constructivism</strong>. This approach did not become particularly popular, but it is useful to know of its existence. It is a fact that human behavior can change over time. It is also true that many psychological mechanisms have enabled accurate predictions for more than a century, and this is unlikely to change. Still, some researchers might believe they are studying unrepeatable events, and if so, they can state why they believe this to be the case. These researchers give up the aim to build theories upon which generalizable predictions can be made, and they will have to make a different argument for the value of their research. Luckily, one does not need to be a social constructivist to acknowledge that the world changes. We should not expect all direct replications to yield the same result. For example, in the classic ‘foot-in-the-door’ effect study, Freedman and Fraser <span class="citation" data-cites="freedman_compliance_1966">(<a href="references.html#ref-freedman_compliance_1966" role="doc-biblioref">1966</a>)</span> first called residents in a local community over the phone to ask them to answer some questions (the small request). If participants agreed, they were asked a larger request, which consisted of “five or six men from our staff coming into your home some morning for about 2 hours to enumerate and classify all the household products that you have. They will have to have full freedom in your house to go through the cupboards and storage places.” The idea that anyone would nowadays agree to such a request when called by a stranger over the telephone seems highly improbable. Repeating this procedure will not lead to more than 50% of respondents agreeing to this request. But the theories we build should be able to account for why some findings no longer replicate by specifying necessary conditions for the effect to be observed. This is the role of theory, and if researchers have good theories, they should be able to continue to make predictions, even if some aspects of the world change. As De Groot <span class="citation" data-cites="degroot_methodology_1969">(<a href="references.html#ref-degroot_methodology_1969" role="doc-biblioref">1969, p. 89</a>)</span> writes: “If one knows something to be true, he is in a position to predict; where prediction is impossible there is no knowledge”.</p>
 <section id="why-replication-studies-are-important" class="level2" data-number="17.1"><h2 data-number="17.1" class="anchored" data-anchor-id="why-replication-studies-are-important">
 <span class="header-section-number">17.1</span> Why replication studies are important</h2>
-<p>Over the last half century, researchers have repeatedly observed that replication studies were rarely performed or published. In an editorial in the Journal of Personality and Social Psychology, Greenwald <span class="citation" data-cites="greenwald_editorial_1976">(<a href="references.html#ref-greenwald_editorial_1976" role="doc-biblioref">Greenwald, 1976</a>)</span> writes: “There may be a crisis in personality and social psychology, associated with the difficulty often experienced by researchers in attempting to replicate published work. A precise statement of the magnitude of this problem cannot be made, since most failures to replicate do not receive public report”. A similar concern about the replicability of findings is expressed by Epstein <span class="citation" data-cites="epstein_stability_1980">(<a href="references.html#ref-epstein_stability_1980" role="doc-biblioref">Epstein, 1980, p. 790</a>)</span>: “Not only are experimental findings often difficult to replicate when there are the slightest alterations in conditions, but even attempts at exact replication frequently fail.” Neher <span class="citation" data-cites="neher_probability_1967">(<a href="references.html#ref-neher_probability_1967" role="doc-biblioref">1967, p. 262</a>)</span> concludes: “The general adoption of independent replication as a requirement for acceptance of findings in the behavioral sciences will require the efforts of investigators, readers, and publishing editors alike. It seems clear that such a policy is both long overdue and crucial to the development of a sound body of knowledge concerning human behavior.” Lubin <span class="citation" data-cites="lubin_replicability_1957">(<a href="references.html#ref-lubin_replicability_1957" role="doc-biblioref">Lubin, 1957</a>)</span> suggests that, where relevant, manuscripts that demonstrate the replicability of findings should receive a higher publication priority. N. C. Smith <span class="citation" data-cites="smith_replication_1970">(<a href="references.html#ref-smith_replication_1970" role="doc-biblioref">1970, p. 974</a>)</span> notes how replication studies are neglected: “The review of the literature on replication and cross-validation research has revealed that psychologists in both research”disciplines” have tended to ignore replication research. Thus, one cannot help but wonder what the impact might be if every investigator repeated the study which he believed to be his most significant contribution to the field.” One problem in the past was the difficulty of describing the methods and analyses in sufficient detail to allow others to repeat the study as closely as possible <span class="citation" data-cites="mack_need_1951">(<a href="references.html#ref-mack_need_1951" role="doc-biblioref">Mack, 1951</a>)</span>. For example, Pereboom <span class="citation" data-cites="pereboom_fundamental_1971">(<a href="references.html#ref-pereboom_fundamental_1971" role="doc-biblioref">1971, p. 442</a>)</span> writes: “Related to the above is the common difficulty of communicating all important details of a psychological experiment to one’s audience. […] Investigators attempting to replicate the work of others are painfully aware of these informational gaps.” Open science practices, such as sharing <a href="14-computationalreproducibility.html">computationally reproducible</a> code and materials, are an important way to solve this problem, and a lot of progress has been made over the last decade to address these problems.</p>
+<p>Over the last half century, researchers have repeatedly observed that replication studies were rarely performed or published. In an editorial in the Journal of Personality and Social Psychology, Greenwald <span class="citation" data-cites="greenwald_editorial_1976">(<a href="references.html#ref-greenwald_editorial_1976" role="doc-biblioref">Greenwald, 1976</a>)</span> writes: “There may be a crisis in personality and social psychology, associated with the difficulty often experienced by researchers in attempting to replicate published work. A precise statement of the magnitude of this problem cannot be made, since most failures to replicate do not receive public report”. A similar concern about the replicability of findings is expressed by Epstein <span class="citation" data-cites="epstein_stability_1980">(<a href="references.html#ref-epstein_stability_1980" role="doc-biblioref">Epstein, 1980, p. 790</a>)</span>: “Not only are experimental findings often difficult to replicate when there are the slightest alterations in conditions, but even attempts at exact replication frequently fail.” Neher <span class="citation" data-cites="neher_probability_1967">(<a href="references.html#ref-neher_probability_1967" role="doc-biblioref">1967, p. 262</a>)</span> concludes: “The general adoption of independent replication as a requirement for acceptance of findings in the behavioral sciences will require the efforts of investigators, readers, and publishing editors alike. It seems clear that such a policy is both long overdue and crucial to the development of a sound body of knowledge concerning human behavior.” Lubin <span class="citation" data-cites="lubin_replicability_1957">(<a href="references.html#ref-lubin_replicability_1957" role="doc-biblioref">Lubin, 1957</a>)</span> suggests that, where relevant, manuscripts that demonstrate the replicability of findings should receive a higher publication priority. N. C. Smith <span class="citation" data-cites="smith_replication_1970">(<a href="references.html#ref-smith_replication_1970" role="doc-biblioref">1970, p. 974</a>)</span> notes how replication studies are neglected: “The review of the literature on replication and cross-validation research has revealed that psychologists in both research ‘disciplines’ have tended to ignore replication research. Thus, one cannot help but wonder what the impact might be if every investigator repeated the study which he believed to be his most significant contribution to the field.” One problem in the past was the difficulty of describing the methods and analyses in sufficient detail to allow others to repeat the study as closely as possible <span class="citation" data-cites="mack_need_1951">(<a href="references.html#ref-mack_need_1951" role="doc-biblioref">Mack, 1951</a>)</span>. For example, Pereboom <span class="citation" data-cites="pereboom_fundamental_1971">(<a href="references.html#ref-pereboom_fundamental_1971" role="doc-biblioref">1971, p. 442</a>)</span> writes: “Related to the above is the common difficulty of communicating all important details of a psychological experiment to one’s audience. […] Investigators attempting to replicate the work of others are painfully aware of these informational gaps.” Open science practices, such as sharing <a href="14-computationalreproducibility.html">computationally reproducible</a> code and materials, are an important way to solve this problem, and a lot of progress has been made over the last decade to address these problems.</p>
 <p>Many researchers have suggested that performing replication studies should be common practice. Lykken <span class="citation" data-cites="lykken_statistical_1968">(<a href="references.html#ref-lykken_statistical_1968" role="doc-biblioref">1968, p. 159</a>)</span> writes: “Ideally, all experiments would be replicated before publication but this goal is impractical”. Loevinger <span class="citation" data-cites="loevinger_information_1968">(<a href="references.html#ref-loevinger_information_1968" role="doc-biblioref">1968, p. 455</a>)</span> makes a similar point: “Most studies should be replicated prior to publication. This recommendation is particularly pertinent in cases where the results are in the predicted direction, but not significant, or barely so, or only by one-tailed tests”. Samelson <span class="citation" data-cites="samelson_watson_1980">(<a href="references.html#ref-samelson_watson_1980" role="doc-biblioref">1980, p. 623</a>)</span> notes in the specific context of Watson’s ‘Little Albert’ study: “Beyond this apparent failure of internal criticism of the data is another one that is even less debatable: the clear neglect of a cardinal rule of scientific method, that is, replication”.</p>
 <p>The idea that replication is a ‘cardinal rule’ or ‘cornerstone’ of the scientific method follows directly from a methodological falsificationist philosophy of science. Popper <span class="citation" data-cites="popper_logic_2002">(<a href="references.html#ref-popper_logic_2002" role="doc-biblioref">2002</a>)</span> discusses how we increase our confidence in theories that make predictions that withstand attempts to falsify the theory. To be able to falsify predictions, predictions need to rule out certain observable data patterns. For example, if our theory predicts that people will be faster at naming the colour of words when their meaning matches the colour (e.g., “blue” written in blue instead of “blue” written in red), the observation that people are not faster (or even slower) would falsify our prediction. A problem is that given variability in observed data any possible data pattern will occur, exactly as often as dictated by chance. This means that in the long run, just based on chance, a study will show people are <em>slower</em> at naming the colour of words when their meaning matches the colour. This fluke will be observed by chance, even though our theory is correct. Popper realized this was a problem for his account of falsification, because it means that “probability statements will not be falsifiable”. After all, if all possible data patterns have a non-zero probability, even if they are extremely rare, they are not logically ruled out. This would make falsification impossible if we demanded that science works according to perfectly formal logical rules.</p>
 <p>The solution is to admit that science does not work following perfectly formal rules. And yet, as Popper acknowledges, science still works. Therefore, instead of abandoning the idea of falsification, Popper proposes a more pragmatic approach to falsification. He writes: “It is fairly clear that this ‘practical falsification’ can be obtained only through a methodological decision to regard highly improbable events as ruled out — as prohibited.” The logical follow-up question is then “Where are we to draw the line? Where does this ‘high improbability’ begin?” Popper argues that even if any low probability event <em>can</em> occur, <em>they are not reproducible at will</em>. Any single study can reveal any possible effect, but a prediction should be considered falsified if we fail to see “the predictable and reproducible occurrence of systematic deviations”. This is why replication is considered a ‘cardinal rule’ in methodological falsificationism: When observations are probabilistic, only the replicable occurrence of low probability events can be taken as the falsification of a prediction. A single <em>p</em> &lt; 0.05 is not considered sufficient; only if close replication studies repeatedly observe a low probability event does Popper allow us to ‘practically falsify’ probabilistic predictions.</p>
@@ -406,27 +572,27 @@ Figure&nbsp;17.1: Results of the Reproducibility Project:Psychology, with replic
 <span class="header-section-number">17.3</span> Analyzing Replication Studies.</h2>
 <p>There are multiple ways to statistically analyze a replication study <span class="citation" data-cites="anderson_there_2016">(<a href="references.html#ref-anderson_there_2016" role="doc-biblioref">Anderson &amp; Maxwell, 2016</a>)</span>. The most straightforward statistical approach is also the least common: Testing whether the effect sizes in the original and replication studies are statistically different from each other. Two effect sizes from an independent <em>t</em>-test can be tested against each other using:</p>
 <p><span class="math display">\[
-Z_{Diff} = \frac{{{\delta}}_{1}{- {\delta}}_{2}}{\sqrt{{V}_{\delta_{1}} + {V}_{\delta_{2}}}}
+Z_\mathrm{Diff} = \frac{\delta_1 - \delta_2}{\sqrt{V_{\delta_1} + V_{\delta_2}}}
 \]</span></p>
 <p>where the difference between the two Cohen’s <em>d</em> effect sizes is divided by the standard error of the difference score, based on the square root of the combined variances of the effect sizes <span class="citation" data-cites="borenstein_introduction_2009">(<a href="references.html#ref-borenstein_introduction_2009" role="doc-biblioref">Borenstein, 2009</a>, formula 19.6 and 19.7)</span>. This formula provides a hint why researchers rarely test for differences between effect sizes. The standard error of the difference score is based on the variance in the original and replication study. If the original study has a small sample size, the variance will be large, and a test of the difference between effect sizes can have very low power.</p>
 <p>Let’s take a look at an original non-preregistered study which observed an effect size of <em>d</em> = 0.6 in an independent <em>t</em>-test with 30 participants in each group. A preregistered replication study is performed which observed an effect size of 0 with 150 participants in each group. Testing the two effect sizes against each other can be achieved in three ways that are in principle identical (although the exact implementation, such as computing Cohen’s <em>d</em> or Hedges’ <em>g</em>, might yield slightly different <em>p</em>-values). The first is to compute the corresponding <em>p</em>-value for the <em>Z</em>-test in the formula above. The other two ways are implemented in the <code>metafor</code> package and consist of a heterogeneity analysis and a moderator analysis. These two approaches are mathematically identical. In the heterogeneity analysis we test if the variability in effect sizes (even though there are only two) is greater than expected based only on random variation.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>d1 <span class="ot">&lt;-</span> <span class="fu">escalc</span>(<span class="at">n1i =</span> <span class="dv">30</span>, </span>
-<span id="cb1-2"><a href="#cb1-2"></a>             <span class="at">n2i =</span> <span class="dv">30</span>, </span>
-<span id="cb1-3"><a href="#cb1-3"></a>             <span class="at">di =</span> <span class="fl">0.6</span>, </span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>d1 <span class="ot">&lt;-</span> <span class="fu">escalc</span>(<span class="at">n1i =</span> <span class="dv">30</span>,</span>
+<span id="cb1-2"><a href="#cb1-2"></a>             <span class="at">n2i =</span> <span class="dv">30</span>,</span>
+<span id="cb1-3"><a href="#cb1-3"></a>             <span class="at">di =</span> <span class="fl">0.6</span>,</span>
 <span id="cb1-4"><a href="#cb1-4"></a>             <span class="at">measure =</span> <span class="st">"SMD"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5"></a>d2 <span class="ot">&lt;-</span> <span class="fu">escalc</span>(<span class="at">n1i =</span> <span class="dv">100</span>, </span>
-<span id="cb1-6"><a href="#cb1-6"></a>             <span class="at">n2i =</span> <span class="dv">100</span>, </span>
-<span id="cb1-7"><a href="#cb1-7"></a>             <span class="at">di =</span> <span class="fl">0.0</span>, </span>
+<span id="cb1-5"><a href="#cb1-5"></a>d2 <span class="ot">&lt;-</span> <span class="fu">escalc</span>(<span class="at">n1i =</span> <span class="dv">100</span>,</span>
+<span id="cb1-6"><a href="#cb1-6"></a>             <span class="at">n2i =</span> <span class="dv">100</span>,</span>
+<span id="cb1-7"><a href="#cb1-7"></a>             <span class="at">di =</span> <span class="fl">0.0</span>,</span>
 <span id="cb1-8"><a href="#cb1-8"></a>             <span class="at">measure =</span> <span class="st">"SMD"</span>)</span>
-<span id="cb1-9"><a href="#cb1-9"></a>metadata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">yi =</span> <span class="fu">c</span>(d1<span class="sc">$</span>yi, d2<span class="sc">$</span>yi), </span>
-<span id="cb1-10"><a href="#cb1-10"></a>                       <span class="at">vi =</span> <span class="fu">c</span>(d1<span class="sc">$</span>vi, d2<span class="sc">$</span>vi), </span>
+<span id="cb1-9"><a href="#cb1-9"></a>metadata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">yi =</span> <span class="fu">c</span>(d1<span class="sc">$</span>yi, d2<span class="sc">$</span>yi),</span>
+<span id="cb1-10"><a href="#cb1-10"></a>                       <span class="at">vi =</span> <span class="fu">c</span>(d1<span class="sc">$</span>vi, d2<span class="sc">$</span>vi),</span>
 <span id="cb1-11"><a href="#cb1-11"></a>                       <span class="at">study =</span> <span class="fu">c</span>(<span class="st">"original"</span>, <span class="st">"replication"</span>))</span>
 <span id="cb1-12"><a href="#cb1-12"></a></span>
 <span id="cb1-13"><a href="#cb1-13"></a><span class="co"># Test based on heterogeneity analysis</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a>res_h <span class="ot">&lt;-</span> <span class="fu">rma</span>(yi, </span>
-<span id="cb1-15"><a href="#cb1-15"></a>             vi, </span>
-<span id="cb1-16"><a href="#cb1-16"></a>             <span class="at">data =</span> metadata, </span>
+<span id="cb1-14"><a href="#cb1-14"></a>res_h <span class="ot">&lt;-</span> <span class="fu">rma</span>(yi,</span>
+<span id="cb1-15"><a href="#cb1-15"></a>             vi,</span>
+<span id="cb1-16"><a href="#cb1-16"></a>             <span class="at">data =</span> metadata,</span>
 <span id="cb1-17"><a href="#cb1-17"></a>             <span class="at">method =</span> <span class="st">"FE"</span>)</span>
 <span id="cb1-18"><a href="#cb1-18"></a>res_h</span>
 <span id="cb1-19"><a href="#cb1-19"></a></span>
@@ -452,8 +618,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <p>The result yields <em>p</em>-value of 0.048, which is statistically significant, and therefore allows us to statistically conclude that the two effect sizes differ from each other. We can also perform this test as a moderator analysis.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>res_mod <span class="ot">&lt;-</span> <span class="fu">rma</span>(yi, </span>
-<span id="cb3-2"><a href="#cb3-2"></a>               vi, </span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>res_mod <span class="ot">&lt;-</span> <span class="fu">rma</span>(yi,</span>
+<span id="cb3-2"><a href="#cb3-2"></a>               vi,</span>
 <span id="cb3-3"><a href="#cb3-3"></a>               <span class="at">mods =</span> <span class="sc">~</span>study,</span>
 <span id="cb3-4"><a href="#cb3-4"></a>               <span class="at">method =</span> <span class="st">"FE"</span>,</span>
 <span id="cb3-5"><a href="#cb3-5"></a>               <span class="at">data =</span> metadata,</span>
@@ -475,7 +641,7 @@ Figure&nbsp;17.2: Forest plot for an original study (N = 60, d = 0.6) and a repl
 </div>
 <p>It is also possible to test the difference between correlations, where the formula is:</p>
 <p><span class="math display">\[
-Z = \frac{ln(1+r)-ln(1-r)}{2}
+Z = \frac{\ln(1+r) - \ln(1-r)}{2}
 \]</span></p>
 <p>This test can for example be performed in the cocor package in R:</p>
 <div class="cell" data-layout-align="center">
@@ -501,26 +667,32 @@ zou2007: Zou's (2007) confidence interval
   Null hypothesis rejected (Interval does not include 0)</code></pre>
 </div>
 </div>
-<p>We see that the difference between an original study with 30 participants that observed an effect of <em>r</em> = 0.4 and a replication study that observed an effect of <em>r</em> = 0.01 is just statistically significant. We can use the pwrss package <span class="citation" data-cites="bulus_pwrss_2023">(<a href="references.html#ref-bulus_pwrss_2023" role="doc-biblioref">Bulus &amp; Polat, 2023</a>)</span> to examine the sample size we would need to achieve sufficient power for such difference between correlations with 90% power.</p>
+<p>We see that the difference between an original study with 30 participants that observed an effect of <em>r</em> = 0.4 and a replication study that observed an effect of <em>r</em> = 0.01 is just statistically significant. We can use the <code>pwrss</code> package <span class="citation" data-cites="bulus_pwrss_2023">(<a href="references.html#ref-bulus_pwrss_2023" role="doc-biblioref">Bulus &amp; Polat, 2023</a>)</span> to examine the sample size we would need to achieve sufficient power for such difference between correlations with 90% power.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(pwrss)</span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="fu">pwrss.z.2corrs</span>(<span class="at">r1 =</span> <span class="fl">0.4</span>, <span class="at">r2 =</span> <span class="fl">0.01</span>,</span>
-<span id="cb6-3"><a href="#cb6-3"></a>               <span class="at">power =</span> .<span class="dv">90</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>, </span>
+<span id="cb6-3"><a href="#cb6-3"></a>               <span class="at">power =</span> .<span class="dv">90</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>,</span>
 <span id="cb6-4"><a href="#cb6-4"></a>               <span class="at">alternative =</span> <span class="st">"not equal"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> Difference between Two Correlations 
- (Independent Samples z Test) 
- H0: r1 = r2 
- HA: r1 != r2 
- ------------------------------ 
-  Statistical power = 0.9 
-  n1 = 126 
-  n2 = 126 
- ------------------------------ 
- Alternative = "not equal" 
- Non-centrality parameter = 3.242 
- Type I error rate = 0.05 
- Type II error rate = 0.1 </code></pre>
+<pre><code>+--------------------------------------------------+
+|             SAMPLE SIZE CALCULATION              |
++--------------------------------------------------+
+
+Independent Correlations 
+
+---------------------------------------------------
+Hypotheses
+---------------------------------------------------
+  H0 (Null Claim) : rho1 - rho2 = 0
+  H1 (Alt. Claim) : rho1 - rho2 != 0
+
+---------------------------------------------------
+Results
+---------------------------------------------------
+  Sample Size          = 126 and 126  &lt;&lt;
+  Type 1 Error (alpha) = 0.050
+  Type 2 Error (beta)  = 0.100
+  Statistical Power    = 0.9</code></pre>
 </div>
 </div>
 <p>The same calculation can be performed in G*Power.</p>
@@ -538,11 +710,11 @@ Figure&nbsp;17.3: Power analysis for the difference between two independent corr
 </div>
 <p>Although a statistical difference between effect sizes is one coherent approach to decide whether a study has been replicated, researchers are sometimes interested in a different question: Was there a significant result in the replication study? In this approach to analyzing replication studies there is no direct comparison with the effect observed in the original study. The question is therefore not so much ‘is the original effect replicated?’ but ‘if we repeat the original study is a statistically significant effect observed?’. In other words, we are not testing whether an effect has been replicated, but whether a predicted effect has been observed. Another way of saying this is that we are not asking whether the observed effect replicated, but whether the original ordinal claim of the presence of an non-zero effect is replicated. In the example in <a href="#fig-rep-1" class="quarto-xref">Figure&nbsp;<span>17.2</span></a> the replication study has an effect size of 0, so there is no statistically significant effect, and the original effect did not replicate (in the sense that repeated the procedure did not yield a significant result).</p>
 <p>Let’s take a step back, and consider which statistical test best reflects the question ‘did this study replicate’. On the one hand it seems reasonable to consider an effect ‘not replicated’ if there is a statistically significant difference between the effect sizes. However, this can mean that a non-significant effect in the replication studies leads to a ‘replication’ just because the effect size estimate is not statistically smaller than the original effect size. On the other hand, it seems reasonable to consider an effect replicated if it is statistically significant in the replication study. These two approaches can lead to a conflict, however. Some statistically significant effects are statistically smaller than the original study. Should these be considered ‘replicated’ or not? We might want to combine both statistical tests, and consider a study a replication if the effect is both statistically different from 0 (i.e., <em>p</em> &lt; .05 in a traditional significance test), and the difference in effect sizes is not statistically different from 0 (i.e., <em>p</em> &gt; .05 for a test of heterogeneity in a meta-analysis of both effect sizes). We can perform both tests, and only consider a finding replicated if both conditions are met. Logically, a finding should then be considered as a non-replication if the opposite is true (i.e., <em>p</em> &gt; .05 for significance test of the replication study, and <em>p</em> &lt; .05 for the test of heterogeneity).</p>
-<p>However, due to the low power of the test for a difference between the effect sizes in the original and replication study, it is not easy to meet the bar of an informative result. In practice, many replication studies that do not yield a statistically significant result will also not show a statistically significant difference as part of the test of heterogeneity. In a preprint (that we never bothered to resubmit after we received positive reviews) Richard Morey and I <span class="citation" data-cites="morey_why_2016">(<a href="references.html#ref-morey_why_2016" role="doc-biblioref">Richard D. Morey &amp; Lakens, 2016</a>)</span> summarized this problem in our title “Why most of psychology is statistically unfalsiﬁable”. If we want to have an informative test for replication following the criteria outlined above, most tests will be uninformative, and lead to inconclusive results.</p>
-<p>This problem becomes even bigger if we admit that we often consider some effects too small to matter. <span class="citation" data-cites="anderson_there_2016">Anderson &amp; Maxwell (<a href="references.html#ref-anderson_there_2016" role="doc-biblioref">2016</a>)</span> mention an additional approach to analyzing replication studies where we do not just test the difference in effect sizes between an original and replication study, but combine this with an equivalence test to examine if the difference - if any - is too small to matter. With very large sample sizes tiny differences between studies can become statistically significant, which would result in the conclusion that a study did not replicate, even if the difference is considered too small to matter.</p>
-<p>Anderson and Maxwell also point out the importance of incorporating a <a href="09-equivalencetest.html#sec-sesoi">smallest effect size of interest</a> when interpreting whether a replication study yields a null effect. For example, <span class="citation" data-cites="mccarthy_registered_2018">McCarthy et al. (<a href="references.html#ref-mccarthy_registered_2018" role="doc-biblioref">2018</a>)</span> replicated a hostility priming study originally reported to have an effect size of <em>d</em> = 3.01. In a multi-lab replication they observed an effect very close to zero: <em>d</em> = 0.06, 95% CI = [0.01, 0.12]. This effect was statistically different from the original, but statistically significant. McCarthy and colleagues argue this effect, even if significant, is too small to matter, and conclude “Our results suggest that the procedures we used in this replication study are unlikely to produce an assimilative priming effect that researchers could practically and routinely detect. Indeed, to detect priming effects as small as the 0.08-scale-unit difference we observed (which works out to approximately d = 0.06, 95% CI = [0.01, 0.12]), a study would need 4,362 participants in each priming condition to have 80% power with an alpha set to .05.”</p>
+<p>However, due to the low power of the test for a difference between the effect sizes in the original and replication study, it is not easy to meet the bar of an informative result. In practice, many replication studies that do not yield a statistically significant result will also not show a statistically significant difference as part of the test of heterogeneity. In a preprint (that we never bothered to resubmit after we received positive reviews) Richard Morey and I <span class="citation" data-cites="morey_why_2016">(<a href="references.html#ref-morey_why_2016" role="doc-biblioref">Richard D. Morey &amp; Lakens, 2016</a>)</span> summarized this problem in our title “Why most of psychology is statistically unfalsifiable”. If we want to have an informative test for replication following the criteria outlined above, most tests will be uninformative, and lead to inconclusive results.</p>
+<p>This problem becomes even bigger if we admit that we often consider some effects too small to matter. <span class="citation" data-cites="anderson_there_2016">Anderson &amp; Maxwell (<a href="references.html#ref-anderson_there_2016" role="doc-biblioref">2016</a>)</span> mention an additional approach to analyzing replication studies where we do not just test the difference in effect sizes between an original and replication study, but combine this with an equivalence test to examine if the difference – if any – is too small to matter. With very large sample sizes tiny differences between studies can become statistically significant, which would result in the conclusion that a study did not replicate, even if the difference is considered too small to matter.</p>
+<p>Anderson and Maxwell also point out the importance of incorporating a <a href="09-equivalencetest.html#sec-sesoi">smallest effect size of interest</a> when interpreting whether a replication study yields a null effect. For example, <span class="citation" data-cites="mccarthy_registered_2018">McCarthy et al. (<a href="references.html#ref-mccarthy_registered_2018" role="doc-biblioref">2018</a>)</span> replicated a hostility priming study with an effect size of <em>d</em> = 3.01 in the original study. In a multi-lab replication they observed an effect very close to zero: <em>d</em> = 0.06, 95% CI = [0.01, 0.12]. This effect was statistically different from the original, but statistically significant. McCarthy and colleagues argue this effect, even if significant, is too small to matter, and conclude “Our results suggest that the procedures we used in this replication study are unlikely to produce an assimilative priming effect that researchers could practically and routinely detect. Indeed, to detect priming effects as small as the 0.08-scale-unit difference we observed (which works out to approximately d = 0.06, 95% CI = [0.01, 0.12]), a study would need 4,362 participants in each priming condition to have 80% power with an alpha set to .05.”</p>
 <p>Should we consider the replication study with <em>d</em> = 0.06 a successful replication, just because the effect is significant in a very large sample? As explained in the chapter on <a href="#sec-equivalencetesting">equivalence testing</a>, effects very close to zero are often considered equivalent to the absence of an effect because the effect is practically insignificant, theoretically smaller than expected, or impossible to reliably investigate given the resources that researchers have available. As <span class="citation" data-cites="mccarthy_registered_2018">McCarthy et al. (<a href="references.html#ref-mccarthy_registered_2018" role="doc-biblioref">2018</a>)</span> argue, the very small effect they observed is no longer practically feasible to study, and psychologists would therefore consider such effects equivalent to a null result. It is recommended to specify a smallest effect of interest in replication studies, where possible together with the original author (see the example by <span class="citation" data-cites="morey_preregistered_2021">Richard D. Morey et al. (<a href="references.html#ref-morey_preregistered_2021" role="doc-biblioref">2021</a>)</span> below) and evaluate replication studies with an equivalence test against the smallest effect size of interest.</p>
-<p>As noted above, although ideally we directly test the difference between effect sizes, the uncertainty in the original effect size estimate when sample sizes are small can make lead to a test with very low power. As we can never increase the sample size of original studies, and we also can not do science if we can not conclude claims in the literature can not be replicated, we will need to be pragmatic and develop alternative statistical procedures to claim an effect can not be replicated. As the large uncertainty in the original effect sizes are the main cause of the problem, a logical solution is to move to statistical approaches where this uncertainty is not part of the test. An intuitive approach would be to test if the effect size in the replication study is statistically smaller than the effect in the original study. In the example above we would test whether the 95% confidence interval around the effect size in the replication study excludes the effect in the original study (i.e., 0.6, or 0.592 when converted to Hedges’<em>g</em>). In essence this is a two-sided test against the original effect size. This is the equivalent of changing a independent <em>t</em>-test where two groups are compared to a one-sample <em>t</em>-test where the 95% confidence interval in one group is compared against the observed mean in the other group, ignoring uncertainty in this other group. We do not accept this approach when we compare two means, and we should not accept this approach when we compare two standardized mean differences from an original and replication study. The problem is that this test will too easily reject the null-hypothesis that the two effects are equal, because it ignores the variability in one of the two effect sizes.</p>
+<p>As noted above, although ideally we directly test the difference between effect sizes, the uncertainty in the original effect size estimate when sample sizes are small can lead to a test with very low power. As we can never increase the sample size of original studies, and we also can not do science if we can not conclude claims in the literature can not be replicated, we will need to be pragmatic and develop alternative statistical procedures to claim an effect can not be replicated. As the large uncertainty in the original effect sizes are the main cause of the problem, a logical solution is to move to statistical approaches where this uncertainty is not part of the test. An intuitive approach would be to test if the effect size in the replication study is statistically smaller than the effect in the original study. In the example above we would test whether the 95% confidence interval around the effect size in the replication study excludes the effect in the original study (i.e., 0.6, or 0.592 when converted to Hedges’<em>g</em>). In essence this is a two-sided test against the original effect size. This is the equivalent of changing an independent <em>t</em>-test where two groups are compared to a one-sample <em>t</em>-test where the 95% confidence interval in one group is compared against the observed mean in the other group, ignoring uncertainty in this other group. We do not accept this approach when we compare two means, and we should not accept this approach when we compare two standardized mean differences from an original and replication study. The problem is that this test will too easily reject the null-hypothesis that the two effects are equal, because it ignores the variability in one of the two effect sizes.</p>
 <p>An alternative approach is to test against a more conservative effect size, and consider an original finding not replicated if this conservative effect size can be rejected. In practice researchers are primarily interested in the question whether the effect size in the replication study is statistically smaller that the effect size in the original study. This questions is answered by an <em>inferiority test</em>, which is statistically significant if the 90% confidence interval around the effect size in the replication study does not contain the conservative effect size estimate. One implementation of an inferiority test is the <em>small telescopes</em> approach <span class="citation" data-cites="simonsohn_small_2015">(<a href="references.html#ref-simonsohn_small_2015" role="doc-biblioref">Simonsohn, 2015</a>)</span>. In the small telescopes approach a test is performed against the effect the original study had 33% power to detect. In the example in <a href="#fig-rep-1" class="quarto-xref">Figure&nbsp;<span>17.2</span></a> the original study had 33% power to detect and effect of <em>d</em> = 0.4.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(</span>
@@ -565,7 +737,7 @@ Figure&nbsp;17.3: Power analysis for the difference between two independent corr
 NOTE: n is number in *each* group</code></pre>
 </div>
 </div>
-<p>The 95% confidence interval of the replication study shows effects larger than 0.277 can be rejected, so a 90% confidence interval would be able to reject even smaller effect sizes. Therefore, the small telescopes approach would allow researchers to conclude that the original effect could not be replicated. The small telescopes is popular especially when replicating small original studies, as the smaller the sample size, the larger the effect size the study had 33% power to detect, and this the easier it is to reject in a replication study. This is the opposite of what happens if we want to test the two effect sizes against each other, where smaller original studies reduce the power of the test.</p>
+<p>The 95% confidence interval of the replication study shows effects larger than 0.277 can be rejected, so a 90% confidence interval would be able to reject even smaller effect sizes. Therefore, the small telescopes approach would allow researchers to conclude that the original effect could not be replicated. The small telescopes is popular especially when replicating small original studies, as the smaller the sample size, the larger the effect size the study had 33% power to detect, and the easier it is to reject in a replication study. This is the opposite of what happens if we want to test the two effect sizes against each other, where smaller original studies reduce the power of the test.</p>
 <p>A fair point of criticism of the small telescopes approach is that the convention to test against an effect the original study had 33% power to detect is completely arbitrary. Ideally researchers would specify the <em>smallest effect size of interest</em> and perform an inferiority test against the smallest effect that would actually matter. Specifying a smallest effect size of interest is difficult, however. In some cases researchers involved in the original study might specify the smallest effect they care about. For example, in a multi-lab replication study of the action-sentence compatibility effect the researchers who published the original study stated that they considered an effect of 50 milliseconds or less theoretically negligible <span class="citation" data-cites="morey_preregistered_2021">(<a href="references.html#ref-morey_preregistered_2021" role="doc-biblioref">Richard D. Morey et al., 2021</a>)</span>. The large sample size allowed the authors to conclusively reject the presence of effects as large or larger than were considered theoretically negligible. Another approach is to set the smallest effect size of interest based on theoretical predictions. Alternatively, researchers might set the smallest effect size of interest to be larger than the <a href="05-questions.html#sec-crud">crud factor</a>, which is the effect size in a literature due to theoretically uninteresting systematic noise <span class="citation" data-cites="orben_crud_2020">(<a href="references.html#ref-orben_crud_2020" role="doc-biblioref">Orben &amp; Lakens, 2020</a>)</span>. For example, <span class="citation" data-cites="ferguson_providing_2021">Ferguson &amp; Heene (<a href="references.html#ref-ferguson_providing_2021" role="doc-biblioref">2021</a>)</span> suggests a smallest effect size of interest of <em>r</em> = 0.1 (or <em>d</em> = 0.2) because such effect sizes can be observed for nonsensical variables, and are likely purely driven by (methodological) confounds.</p>
 <p>Another approach that has been proposed is to combine the effect size of the original study and the replication study in a meta-analysis, and test whether the meta-analytic effect is statistically different from zero. This approach is interesting if there is no bias, but when there is bias the weakness of this approach outweighs its usefulness. As publication bias and selection bias <a href="06-effectsize.html#sec-effectinflated">inflated effect sizes</a> the meta-analytic effect size will also be inflated. This in turn inflates the probability that the meta-analytic effect size is statistically significant, when there is no effect.</p>
 </section><section id="replication-studies-or-lower-alpha-levels" class="level2" data-number="17.4"><h2 data-number="17.4" class="anchored" data-anchor-id="replication-studies-or-lower-alpha-levels">
@@ -588,7 +760,7 @@ Figure&nbsp;17.4: Ratio of the sample size required to run one study at an alpha
 </div>
 </div>
 </div>
-<p>However, there are strong arguments in favor of <a href="05-questions.html#sec-onesided">directional tests</a> in general, and especially for replication studies. When we examine the same scenario for a one-sided test the ratios change, and one larger study at 0.0025 is slightly more efficient for smaller effect sizes when the desired statistical power is 90%, but for 80% it is more efficient to perform two tests at 0.05. For example, the total sample size required to detect an effect of d = 0.5 with an alpha level of 0.0025 and with 80% power is 218 With an alpha of 0.05 the total required sample size is 102, which makes the ratio 218/(102+102) = 1.07, and the number of observations saved (now when performing two studies) is (2*102)-218 = 14.</p>
+<p>However, there are strong arguments in favor of <a href="05-questions.html#sec-onesided">directional tests</a> in general, and especially for replication studies. When we examine the same scenario for a one-sided test the ratios change, and one larger study at 0.0025 is slightly more efficient for smaller effect sizes when the desired statistical power is 90%, but for 80% it is more efficient to perform two tests at 0.05. For example, the total sample size required to detect an effect of d = 0.5 with an alpha level of 0.0025 and with 80% power is 218. With an alpha of 0.05 the total required sample size is 102, which makes the ratio 218/(102+102) = 1.07, and the number of observations saved (now when performing two studies) is (2*102)-218 = 14.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-alphalevels2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -611,7 +783,7 @@ Figure&nbsp;17.5: Ratio of the sample size required to run one study at an alpha
 <blockquote class="blockquote">
 <p>‘If we do not achieve an effect which others formerly achieved, it must be that we lack something in our operation which was the cause of this effect succeeding, and if we lack one thing only, then this alone can be the true cause. Now we do not lack eggs, or slings, or sturdy fellows to whirl them, and still they do not cook, but rather cool down faster if hot. And since we lack nothing except being Babylonians, then being Babylonian is the cause of the egg hardening.’</p>
 </blockquote>
-<p>At the same time, some failures to replicate <em>are</em> due to a difference in auxiliary hypotheses. In the most interesting study examining whether failures to replicate are due to differences in auxiliary assumptions, Ebersole and colleagues <span class="citation" data-cites="ebersole_many_2020">(<a href="references.html#ref-ebersole_many_2020" role="doc-biblioref">2020</a>)</span> performed additional replications of 10 studies that were replicated in the Reproducibility Project: Psychology (RP:P, <span class="citation" data-cites="opensciencecollaboration_estimating_2015">Open Science Collaboration (<a href="references.html#ref-opensciencecollaboration_estimating_2015" role="doc-biblioref">2015</a>)</span>). When the replication studies were designed the authors of original studies were approached for feedback on the design of the replication study. For each of these 10 studies the original authors had raised concerns, but these were not incorporated in the replication study. For example, authors raised the concern that the replication study included participants who had taken prior psychology or economics courses, or who had participated in prior psychology studies. The authors predicted that the effects should be larger in ‘naive’ participants. Other authors pointed out the possibility that the stimuli were not sufficiently pilot tested, the fact that data was collected in a different country, differences in the materials or stimuli, or they pointed out differences in screen resolution of the computer set-up. All these concerns involve predictions about the effects of auxiliary hypotheses, and a team of 172 researchers collaborated with original authors to examine these auxiliary hypotheses in Many Labs 5 <span class="citation" data-cites="ebersole_many_2020">(<a href="references.html#ref-ebersole_many_2020" role="doc-biblioref">Ebersole et al., 2020</a>)</span>. What makes this project especially interesting is that large replication studies were performed both of the RP:P version of the study, as of the revised protocol that addressed the concerns raised by the researchers.</p>
+<p>At the same time, some failures to replicate <em>are</em> due to a difference in auxiliary hypotheses. In the most interesting study examining whether failures to replicate are due to differences in auxiliary assumptions, Ebersole and colleagues <span class="citation" data-cites="ebersole_many_2020">(<a href="references.html#ref-ebersole_many_2020" role="doc-biblioref">2020</a>)</span> performed additional replications of 10 studies that were replicated in the Reproducibility Project: Psychology (RP:P, <span class="citation" data-cites="opensciencecollaboration_estimating_2015">Open Science Collaboration (<a href="references.html#ref-opensciencecollaboration_estimating_2015" role="doc-biblioref">2015</a>)</span>). When the replication studies were designed the authors of original studies were approached for feedback on the design of the replication study. For each of these 10 studies the original authors had raised concerns, but these were not incorporated in the replication study. For example, authors raised the concern that the replication study included participants who had taken prior psychology or economics courses, or who had participated in prior psychology studies. The authors predicted that the effects should be larger in ‘naive’ participants. Other authors pointed out the possibility that the stimuli were not sufficiently pilot tested, the fact that data was collected in a different country, differences in the materials or stimuli, or they pointed out differences in screen resolution of the computer set-up. All these concerns involve predictions about the effects of auxiliary hypotheses, and a team of 172 researchers collaborated with original authors to examine these auxiliary hypotheses in Many Labs 5 <span class="citation" data-cites="ebersole_many_2020">(<a href="references.html#ref-ebersole_many_2020" role="doc-biblioref">Ebersole et al., 2020</a>)</span>. What makes this project especially interesting is that large replication studies were performed both of the RP:P version of the study, and of the revised protocol that addressed the concerns raised by the researchers.</p>
 <p>The results of this project provide a nice illustration of how difficult it is to predict whether findings will replicate, until you try to replicate them <span class="citation" data-cites="miller_what_2009">(<a href="references.html#ref-miller_what_2009" role="doc-biblioref">Miller, 2009</a>)</span>. Two of the studies that did not replicate in the RP:P also did not replicate when a larger new sample was collected, but did replicate with the revised protocol. However, these replication effect sizes were arguably trivially small (Albarracin et al., Study 5 and Shnabel &amp; Nadler in <a href="#fig-manylabs5" class="quarto-xref">Figure&nbsp;<span>17.6</span></a>). A third study (Van Dijk et al) showed a similar pattern but only just failed to show a significant effect in the revised protocol. A fourth study (Albarracin et al., Study 7) was just significant in the original study, and the RP:P study found a very similar effect size which was just non-significant. A meta-analysis pooling these two studies would have yielded a significant meta-analytic effect. And yet, surprisingly, both the replication of the RP:P and the revised protocol based on feedback by the original authors yielded clear null results. A fifth study (Crosby et al) found the same pattern in the original and RP:P study as the second study. Neither the much larger RP:P replication, nor the replication based on the revised protocol yielded a significant result. And yet, the pattern of effect sizes is extremely similar in all four studies, and a meta-analysis across all studies reveals a small but statistically significant effect. In total six of the studies can clearly be regarded as a non-replication where the original authors’ concerns did not matter, as only the original study showed a significant effect, and none of the replication studies yielded a significant result.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -625,25 +797,25 @@ Figure&nbsp;17.6: Forest plot for the original study, RP:P replication study, th
 </div>
 </div>
 </div>
-<p>Note that we can not conclude that the concerns the authors raised in the other four studies mattered. Despite the large sample sizes, only one statistical difference between the RP:P protocol and the revised protocol was observed (Payne et al.), and here the changes suggested by the authors led to an effect sizes were even <em>further</em> away from the effect size in the original study, if we test the effect sizes directlyagainst each other in a test for heterogeneity:</p>
+<p>Note that we can not conclude that the concerns the authors raised in the other four studies mattered. Despite the large sample sizes, only one statistical difference between the RP:P protocol and the revised protocol was observed (Payne et al.), and here the changes suggested by the authors led to an effect sizes were even <em>further</em> away from the effect size in the original study, if we test the effect sizes directly against each other in a test for heterogeneity:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># Payne, Burkley, &amp; Stokes (2008)</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="co"># Note that the CI in the figure is wide because there is considerable variability across the sites where data was collected, especially for the revised protocol.</span></span>
 <span id="cb10-3"><a href="#cb10-3"></a></span>
-<span id="cb10-4"><a href="#cb10-4"></a>r1 <span class="ot">&lt;-</span> <span class="fu">escalc</span>(<span class="at">ni =</span> <span class="dv">545</span>, </span>
-<span id="cb10-5"><a href="#cb10-5"></a>             <span class="at">ri =</span> <span class="fl">0.05</span>, </span>
+<span id="cb10-4"><a href="#cb10-4"></a>r1 <span class="ot">&lt;-</span> <span class="fu">escalc</span>(<span class="at">ni =</span> <span class="dv">545</span>,</span>
+<span id="cb10-5"><a href="#cb10-5"></a>             <span class="at">ri =</span> <span class="fl">0.05</span>,</span>
 <span id="cb10-6"><a href="#cb10-6"></a>             <span class="at">measure =</span> <span class="st">"ZCOR"</span>)</span>
-<span id="cb10-7"><a href="#cb10-7"></a>r2 <span class="ot">&lt;-</span> <span class="fu">escalc</span>(<span class="at">ni =</span> <span class="dv">558</span>, </span>
-<span id="cb10-8"><a href="#cb10-8"></a>             <span class="at">ri =</span> <span class="sc">-</span><span class="fl">0.16</span>, </span>
+<span id="cb10-7"><a href="#cb10-7"></a>r2 <span class="ot">&lt;-</span> <span class="fu">escalc</span>(<span class="at">ni =</span> <span class="dv">558</span>,</span>
+<span id="cb10-8"><a href="#cb10-8"></a>             <span class="at">ri =</span> <span class="sc">-</span><span class="fl">0.16</span>,</span>
 <span id="cb10-9"><a href="#cb10-9"></a>             <span class="at">measure =</span> <span class="st">"ZCOR"</span>)</span>
-<span id="cb10-10"><a href="#cb10-10"></a>metadata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">yi =</span> <span class="fu">c</span>(r1<span class="sc">$</span>yi, r2<span class="sc">$</span>yi), </span>
-<span id="cb10-11"><a href="#cb10-11"></a>                       <span class="at">vi =</span> <span class="fu">c</span>(r1<span class="sc">$</span>vi, r2<span class="sc">$</span>vi), </span>
+<span id="cb10-10"><a href="#cb10-10"></a>metadata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">yi =</span> <span class="fu">c</span>(r1<span class="sc">$</span>yi, r2<span class="sc">$</span>yi),</span>
+<span id="cb10-11"><a href="#cb10-11"></a>                       <span class="at">vi =</span> <span class="fu">c</span>(r1<span class="sc">$</span>vi, r2<span class="sc">$</span>vi),</span>
 <span id="cb10-12"><a href="#cb10-12"></a>                       <span class="at">study =</span> <span class="fu">c</span>(<span class="st">"original"</span>, <span class="st">"replication"</span>))</span>
 <span id="cb10-13"><a href="#cb10-13"></a></span>
 <span id="cb10-14"><a href="#cb10-14"></a><span class="co"># Test based on heterogeneity analysis</span></span>
-<span id="cb10-15"><a href="#cb10-15"></a>res_h <span class="ot">&lt;-</span> <span class="fu">rma</span>(yi, </span>
-<span id="cb10-16"><a href="#cb10-16"></a>             vi, </span>
-<span id="cb10-17"><a href="#cb10-17"></a>             <span class="at">data =</span> metadata, </span>
+<span id="cb10-15"><a href="#cb10-15"></a>res_h <span class="ot">&lt;-</span> <span class="fu">rma</span>(yi,</span>
+<span id="cb10-16"><a href="#cb10-16"></a>             vi,</span>
+<span id="cb10-17"><a href="#cb10-17"></a>             <span class="at">data =</span> metadata,</span>
 <span id="cb10-18"><a href="#cb10-18"></a>             <span class="at">method =</span> <span class="st">"FE"</span>)</span>
 <span id="cb10-19"><a href="#cb10-19"></a>res_h</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -668,7 +840,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>The other difference between the RP:P protocol and the revised protocol were not statistically significant, but in one other study the effect size was even further away from the original effect size after the changes to the protocol, and in the other two studies the effect size was more similar as to the original study. Altogether, it seems authors who raise concerns about replication studies do not have a high success rate in predicting which auxiliary hypotheses influence the observed effect size. This is a very important conclusion of Many Labs 5.</p>
 </section><section id="why-are-replication-studies-so-rare" class="level2" data-number="17.6"><h2 data-number="17.6" class="anchored" data-anchor-id="why-are-replication-studies-so-rare">
 <span class="header-section-number">17.6</span> Why are replication studies so rare?</h2>
-<p>“It is difficult to deny that there is more thrill, and usually more glory, involved in blazing a new trail than in checking the pioneer’s work” <span class="citation" data-cites="mack_need_1951">(<a href="references.html#ref-mack_need_1951" role="doc-biblioref">Mack, 1951</a>)</span>. Throughout history, researchers have pointed out that the reward structures value novel research over replication studies <span class="citation" data-cites="koole_rewarding_2012 fishman_american_1982">(<a href="references.html#ref-fishman_american_1982" role="doc-biblioref">Fishman &amp; Neigher, 1982</a>; <a href="references.html#ref-koole_rewarding_2012" role="doc-biblioref">Koole &amp; Lakens, 2012</a>)</span>. Performing replication studies is a social dilemma: It is good for everyone if scientists perform replication studies, but it is better for an individual scientist to perform a novel study than a replication study. Exact numbers of how many replication studies are performed are difficult to get, as there is no complete database that keeps track of all replication studies (but see <a href="https://curatescience.org/">Curate Science</a>, <a href="https://replication.uni-goettingen.de/wiki/index.php/Main_Page">Replication WIKI</a> or the <a href="https://metaanalyses.shinyapps.io/replicationdatabase/">Replication Database</a>).</p>
+<p>“It is difficult to deny that there is more thrill, and usually more glory, involved in blazing a new trail than in checking the pioneer’s work” <span class="citation" data-cites="mack_need_1951">(<a href="references.html#ref-mack_need_1951" role="doc-biblioref">Mack, 1951</a>)</span>. Throughout history, researchers have pointed out that the reward structures value novel research over replication studies <span class="citation" data-cites="koole_rewarding_2012 fishman_american_1982">(<a href="references.html#ref-fishman_american_1982" role="doc-biblioref">Fishman &amp; Neigher, 1982</a>; <a href="references.html#ref-koole_rewarding_2012" role="doc-biblioref">Koole &amp; Lakens, 2012</a>)</span>. Performing replication studies is a social dilemma: It is good for everyone if scientists perform replication studies, but it is better for an individual scientist to perform a novel study than a replication study. Exact numbers on how many replication studies are performed are difficult to get, as there is no complete database that keeps track of all replication studies (but see <a href="https://curatescience.org/">Curate Science</a>, <a href="https://replication.uni-goettingen.de/wiki/index.php/Main_Page">Replication WIKI</a> or the <a href="https://metaanalyses.shinyapps.io/replicationdatabase/">Replication Database</a>).</p>
 <p>Although the reward structures have remained the same, there are some positive developments. At the start of the replication crisis failed replications of Bem’s pre-cognition study were desk-rejected by the editor of JPSP, Eliot Smith, who stated “This journal does not publish replication studies, whether successful or unsuccessful” and “We don’t want to be the Journal of Bem Replication” <span class="citation" data-cites="aldhous_journal_2011">(<a href="references.html#ref-aldhous_journal_2011" role="doc-biblioref">Aldhous, 2011</a>)</span>. This led to public outcry, and numerous journals have started to explicitly state they accept replication studies. An increasing number of studies are accepting Registered Report publications, which can also be replication studies, and Peer Community Inn: Registered Reports initiative is publishing replication studies. The APA has created specific <a href="https://apastyle.apa.org/jars/quant-table-6.pdf">reporting guidelines for replication studies</a>. Some science funders have developed <a href="https://www.nature.com/articles/nature.2016.20287">grants for replication research</a>. At the same time, replication studies are still rewarded less than novel work, which means researchers who want to build a career are still pushed towards novel research instead of replication studies. So despite positive developments, in many disciplines there is still some way to go before replication studies become a normal aspect of scientific research.</p>
 
 
@@ -1033,383 +1205,255 @@ function move_sidebar() {
 move_sidebar();
 window.onresize = move_sidebar;
 </script><script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
       });
     }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
         }
-        return container.innerHTML
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1417,185 +1461,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./16-confirmationbias.html" class="pagination-link" aria-label="Confirmation Bias and Organized Skepticism">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Confirmation Bias and Organized Skepticism</span></span>
       </a>          

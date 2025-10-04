@@ -79,9 +79,11 @@ Thus, in a Neyman-Pearson approach, *p*-values form the basis of decisions about
 
 ## Creating a null model
 
-Assume I ask two groups of 10 people how much they liked the extended director's cut of the Lord of the Rings (LOTR) trilogy. This means our **total sample size** (*N*) is 20, and the sample size in each group (*n*) is 10. The first group consists of my friends, and the second groups consists of friends of my wife. Our friends rate the trilogy on a score from 1 to 10. We can calculate the average rating by my friends, which is 8.7, and the average rating by my wife’s friends, which is 7.7. We can compare the scores in both groups by looking at the raw data, and by plotting the data.
+Assume I ask two groups of 10 people how much they liked the extended director's cut of the Lord of the Rings (LOTR) trilogy (see @fig-friends). This means our **total sample size** (*N*) is 20, and the sample size in each group (*n*) is 10. The first group consists of my friends, and the second groups consists of friends of my wife. Our friends rate the trilogy on a score from 1 to 10. We can calculate the average rating by my friends, which is 8.7, and the average rating by my wife’s friends, which is 7.7. We can compare the scores in both groups by looking at the raw data, and by plotting the data.
 
-```{r friends, echo=F, tab.cap = "Ratings for the Lord of the Rings extended trilogy by two groups of friends."}
+```{r fig-friends, echo=F}
+#| fig-cap: "Ratings for the Lord of the Rings extended trilogy by two groups of friends."
+
 
 friends <- paste0("friend_", 1:10)
 friends_daniel <- c(9, 7, 8, 9, 8, 9, 9, 10, 9, 9)

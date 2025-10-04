@@ -456,7 +456,6 @@ d <- data.frame(
   upper = c(t.test(x)[[4]][2], t.test(y)[[4]][2], t.test(y, x)[[4]][2])
 )
 
-par(bg = backgroundcolor)
 plot(NA, xlim = c(.5, 3.5), ylim = c(0, max(d$upper[1:2] + 1)), bty = "l", 
      xaxt = "n", xlab = "", ylab = "Mean")
 points(d$mean[1:2], pch = 19)

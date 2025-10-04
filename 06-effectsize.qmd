@@ -326,15 +326,15 @@ We can compute the marginal means for A1, A2, B1, and B2, which is simply averag
 
 We can also calculate the interaction effect. For each cell we take the value in the cell (e.g., for a1b1 this is 1) and compute the difference between the cell mean and the additive effect of the two factors as:
 
-1 \u2013 (the grand mean of 0.5 + (the marginal mean of a1 minus the grand mean, or 0.5 - 0.5 = 0) + (the marginal mean of b1 minus the grand mean, or 0.5 \u2013 0.5 = 0)). Thus, for each cell we get:
+1 - (the grand mean of 0.5 + (the marginal mean of a1 minus the grand mean, or 0.5 - 0.5 = 0) + (the marginal mean of b1 minus the grand mean, or 0.5 - 0.5 = 0)). Thus, for each cell we get:
 
-a1b1: 1 \u2013 (0.5 + (0.5 \u2013 0.5) + (0.5  \u20130.5)) = 0.5
+a1b1: 1 - (0.5 + (0.5 - 0.5) + (0.5 - 0.5)) = 0.5
 
-a1b2: 0 \u2013 (0.5 + (0.5 \u2013 0.5) + (0.5 \u2013 0.5)) = -0.5
+a1b2: 0 - (0.5 + (0.5 - 0.5) + (0.5 - 0.5)) = -0.5
 
-a2b1: 0 - (0.5 + (0.5 \u2013 0.5) + (0.5 \u2013 0.5)) = -0.5
+a2b1: 0 - (0.5 + (0.5 - 0.5) + (0.5 - 0.5)) = -0.5
 
-a2b2: 1 - (0.5 + (0.5 \u2013 0.5) + (0.5  \u20130.5)) = 0.5
+a2b2: 1 - (0.5 + (0.5 - 0.5) + (0.5 - 0.5)) = 0.5
 
 Cohen's $f$ is then $f = \frac { \sqrt { \frac { 0.5^2 +(-0.5^2) + (-0.5^2) + 0.5^2 } { 4 } }}{ 2 } = 0.25$
 
@@ -342,13 +342,13 @@ For the ordinal interaction the grand mean is (1 + 0 + 0 + 0) / 4, or 0.25. The 
 
 Completing the calculation for all four cells for the ordinal interaction gives:
 
-a1b1: 1 \u2013 (0.25 + (0.5 \u2013 0.25) + (0.5 \u2013 0.25)) = 0.25
+a1b1: 1 - (0.25 + (0.5 - 0.25) + (0.5 - 0.25)) = 0.25
 
-a1b2: 0 \u2013 (0.25 + (0.5 \u2013 0.25) + (0.0 \u2013 0.25)) = -0.25
+a1b2: 0 - (0.25 + (0.5 - 0.25) + (0.0 - 0.25)) = -0.25
 
-a2b1: 0 \u2013 (0.25 + (0.0 \u2013 0.25) + (0.5 \u2013 0.25)) = -0.25
+a2b1: 0 - (0.25 + (0.0 - 0.25) + (0.5 - 0.25)) = -0.25
 
-a2b2: 0 \u2013 (0.25 + (0.0 \u2013 0.25) + (0.0 \u2013 0.25)) = 0.25
+a2b2: 0 - (0.25 + (0.0 - 0.25) + (0.0 - 0.25)) = 0.25
 
 Cohen's $f$ is then $f = \frac { \sqrt { \frac { 0.25^2 +(-0.25^2) + (-0.25^2) + 0.25^2 } { 4 } }}{ 2 } = 0.125$.
 
@@ -402,7 +402,7 @@ d_dist <- dt(x * sqrt(N / 2), df = (N * 2) - 2, ncp = ncp) * sqrt(N / 2) # calcu
 lines(x, d_dist, col = "black", type = "l", lwd = 3)
 ```
 
-If researchers only have access to the effect sizes estimates in the grey area – a truncated distribution where non-significant results are removed – a weighted average effect size from only these studies will be upwardly biased. We can see this in the two forest plots visualizing meta-analyses in @fig-metabias. In the top meta-analysis all 5 studies are included, even though study C and D yield non-significant results (as can be seen from the fact that the 95% CI overlaps with 0). The estimated effect size based on all 5 studies is *d* = 0.4. In the bottom meta-analysis the two non-significant studies are removed - as would happen when there is publication bias. Without these two studies the estimated effect size in the meta-analysis, *d* = 0.5, is inflated. The extent to which meta-analyses are inflated depends on the true effect size and the sample size of the studies.
+We can see this in the two forest plots visualizing meta-analyses in @fig-metabias. In the top meta-analysis all 5 studies are included, even though study C and D yield non-significant results (as can be seen from the fact that the 95% CI overlaps with 0). The estimated effect size based on all 5 studies is *d* = 0.4. In the bottom meta-analysis the two non-significant studies are removed - as would happen when there is publication bias. Without these two studies the estimated effect size in the meta-analysis, *d* = 0.5, is inflated. The extent to which meta-analyses are inflated depends on the true effect size and the sample size of the studies.
 
 ```{r fig-metabias, fig.margin=FALSE, echo=FALSE, fig.height=8}
 #| fig-cap: "Two forest plots, the top with all studies reported, the bottom only reporting statistically significant effects."
@@ -431,7 +431,6 @@ metafor::forest(result,
        xlim = c(-0.4, 1.5),
        alim = c(-0.2, 1),
        textpos = c(-0.4, 1.5),
-       font = "Open Sans",
        header = TRUE)
 par(mar=c(5,3,1,2))
 metafor::forest(result_biased,
@@ -446,7 +445,6 @@ metafor::forest(result_biased,
        xlim = c(-0.4, 1.5),
        alim = c(-0.2, 1),
        textpos = c(-0.4, 1.5),
-       font = "Open Sans",
        header = TRUE)
 
 par(mfrow=c(1,1))

@@ -839,7 +839,7 @@ cat(longmcq(opts_p))
 ```{r, echo = FALSE, results = 'asis'}
 opts_p <- c(
    "You have low power for all possible effect sizes.",
-   "Observed effect sizes of *d* = 0.5 will never be statistically significant.",
+   "Observed effect sizes of *d* = 0.5 will be statistically significant 5% of the time.",
    answer = "Observed effect sizes of *d* = 0.5 will never be statistically significant.", 
    "Observed effect sizes of *d* = 0.5 will be statistically significant."
 )

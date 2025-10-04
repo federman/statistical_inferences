@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.7.32">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="This open educational resource contains information to improve statistical inferences, design better experiments, and report scientific research more transparently.">
 <title>9&nbsp; Equivalence Testing and Interval Hypotheses – Improving Your Statistical Inferences</title>
@@ -19,8 +19,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -31,7 +32,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -84,17 +85,20 @@ div.csl-indent {
 <link href="./10-sequential.html" rel="next">
 <link href="./08-samplesizejustification.html" rel="prev">
 <link href="./images/logos/favicon.ico" rel="icon">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-c3c2c9e745155556954bc4da23476b10.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-8c0058e5e3bd740c0d6c45014de01b5a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-3327e73e14e9b88e17095f9410adaab4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-8c0058e5e3bd740c0d6c45014de01b5a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -155,7 +159,169 @@ window.Quarto = {
 <link rel="stylesheet" href="include/style.css">
 <link rel="stylesheet" href="include/webex.css">
 </head>
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
@@ -795,14 +961,14 @@ Figure&nbsp;9.9: Null and alternative distribution with Type 1 and Type 2 error 
 <span class="header-section-number">9.13.1</span> Questions about equivalence tests</h3>
 <p><strong>Q1</strong>: When the 90% CI around a mean difference falls just within the equivalence range from -0.4 to 0.4, we can reject the smallest effect size of interest. Based on your knowledge about confidence intervals, when the equivalence range is changed to -0.3 – 0.3, what is needed for the equivalence test to be significant (assuming the effect size estimate and standard deviation remains the same)?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_DXYFQXIMNI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DXYFQXIMNI" value=""><span>A larger effect size.</span></label><label><input type="radio" autocomplete="off" name="radio_DXYFQXIMNI" value=""><span>A lower alpha level.</span></label><label><input type="radio" autocomplete="off" name="radio_DXYFQXIMNI" value="answer"><span>A larger sample size.</span></label><label><input type="radio" autocomplete="off" name="radio_DXYFQXIMNI" value=""><span>Lower statistical power.</span></label>
+<div id="radio_MASZWDPQYG" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MASZWDPQYG" value=""><span>A larger effect size.</span></label><label><input type="radio" autocomplete="off" name="radio_MASZWDPQYG" value=""><span>A lower alpha level.</span></label><label><input type="radio" autocomplete="off" name="radio_MASZWDPQYG" value="answer"><span>A larger sample size.</span></label><label><input type="radio" autocomplete="off" name="radio_MASZWDPQYG" value=""><span>Lower statistical power.</span></label>
 </div>
 </div>
 <p><strong>Q2</strong>: Why is it incorrect to conclude that there is no effect, when an equivalence test is statistically significant?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_KVHCSSATDM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KVHCSSATDM" value=""><span>An equivalence test is a statement about the data, not about the presence or absence of an effect. </span></label><label><input type="radio" autocomplete="off" name="radio_KVHCSSATDM" value=""><span>The result of an equivalence test could be a Type 1 error, and therefore, one should conclude that there is no effect, or a Type 1 error has been observed. </span></label><label><input type="radio" autocomplete="off" name="radio_KVHCSSATDM" value="answer"><span>An equivalence test rejects values as large or larger than the smallest effect size of interest, so the possibility that there is a small non-zero effect cannot be rejected.</span></label><label><input type="radio" autocomplete="off" name="radio_KVHCSSATDM" value=""><span>We conclude there is no effect when the equivalence test is non-significant, not when the equivalence test is significant.</span></label>
+<div id="radio_FTPBMCJFGQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FTPBMCJFGQ" value=""><span>An equivalence test is a statement about the data, not about the presence or absence of an effect. </span></label><label><input type="radio" autocomplete="off" name="radio_FTPBMCJFGQ" value=""><span>The result of an equivalence test could be a Type 1 error, and therefore, one should conclude that there is no effect, or a Type 1 error has been observed. </span></label><label><input type="radio" autocomplete="off" name="radio_FTPBMCJFGQ" value="answer"><span>An equivalence test rejects values as large or larger than the smallest effect size of interest, so the possibility that there is a small non-zero effect cannot be rejected.</span></label><label><input type="radio" autocomplete="off" name="radio_FTPBMCJFGQ" value=""><span>We conclude there is no effect when the equivalence test is non-significant, not when the equivalence test is significant.</span></label>
 </div>
 </div>
 <p><strong>Q3</strong>: Researchers are interested in showing that students who use an online textbook perform just as well as students who use a paper textbook. If so, they can recommend teachers to allow students to choose their preferred medium, but if there is a benefit, they would recommend the medium that leads to better student performance. They randomly assign students to use an online textbook or a paper textbook, and compare their grades on the exam for the course (from the worst possible grade, 1, to the best possible grade, 10). They find that the both groups of students perform similarly, with for the paper textbook condition <em>m</em> = 7.35, <em>sd</em> = 1.15, <em>n</em> = 50, and the online textbook <em>m</em> = 7.13, <em>sd</em> = 1.21, <em>n</em> = 50). Let’s assume we consider any effect as large or larger than half a grade point (0.5) worthwhile, but any difference smaller than 0.5 too small to matter, and the alpha level is set at 0.05. What would the authors conclude? Copy the code below into R, replacing all zeroes with the correct numbers. Type <code>?tsum_TOST</code> for help with the function.</p>
@@ -839,20 +1005,20 @@ Figure&nbsp;9.9: Null and alternative distribution with Type 1 and Type 2 error 
 <span id="cb17-18"><a href="#cb17-18"></a><span class="fu">plot</span>(result, <span class="at">type =</span> <span class="st">"tnull"</span>, <span class="at">estimates =</span> <span class="st">"raw"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div id="radio_AHUEJLCYWU" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_AHUEJLCYWU" value=""><span>We can <strong>reject</strong> an effect size of zero, and we can <strong>reject</strong> the presence of effects as large or larger than the smallest effect size of interest. </span></label><label><input type="radio" autocomplete="off" name="radio_AHUEJLCYWU" value=""><span>We can <strong>not reject</strong> an effect size of zero, and we can <strong>reject</strong> the presence of effects as large or larger than the smallest effect size of interest. </span></label><label><input type="radio" autocomplete="off" name="radio_AHUEJLCYWU" value=""><span>We can <strong>reject</strong> an effect size of zero, and we can <strong>not reject</strong> the presence of effects as large or larger than the smallest effect size of interest. </span></label><label><input type="radio" autocomplete="off" name="radio_AHUEJLCYWU" value="answer"><span>We can <strong>not reject</strong> an effect size of zero, and we can <strong>not reject</strong> the presence of effects as large or larger than the smallest effect size of interest.</span></label>
+<div id="radio_AWACKMWREZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_AWACKMWREZ" value=""><span>We can <strong>reject</strong> an effect size of zero, and we can <strong>reject</strong> the presence of effects as large or larger than the smallest effect size of interest. </span></label><label><input type="radio" autocomplete="off" name="radio_AWACKMWREZ" value=""><span>We can <strong>not reject</strong> an effect size of zero, and we can <strong>reject</strong> the presence of effects as large or larger than the smallest effect size of interest. </span></label><label><input type="radio" autocomplete="off" name="radio_AWACKMWREZ" value=""><span>We can <strong>reject</strong> an effect size of zero, and we can <strong>not reject</strong> the presence of effects as large or larger than the smallest effect size of interest. </span></label><label><input type="radio" autocomplete="off" name="radio_AWACKMWREZ" value="answer"><span>We can <strong>not reject</strong> an effect size of zero, and we can <strong>not reject</strong> the presence of effects as large or larger than the smallest effect size of interest.</span></label>
 </div>
 </div>
 <p><strong>Q4</strong>: If we increase the sample size in question Q3 to 150 participants in each condition, and assuming the observed means and standard deviations would be exactly the same, which conclusion would we draw?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_CDIWCCTVYI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_CDIWCCTVYI" value=""><span>We can <strong>reject</strong> an effect size of zero, and we can <strong>reject</strong> the presence of effects as large or larger than the smallest effect size of interest. </span></label><label><input type="radio" autocomplete="off" name="radio_CDIWCCTVYI" value="answer"><span>We can <strong>not reject</strong> an effect size of zero, and we can <strong>reject</strong> the presence of effects as large or larger than the smallest effect size of interest. </span></label><label><input type="radio" autocomplete="off" name="radio_CDIWCCTVYI" value=""><span>We can <strong>reject</strong> an effect size of zero, and we can <strong>not reject</strong> the presence of effects as large or larger than the smallest effect size of interest. </span></label><label><input type="radio" autocomplete="off" name="radio_CDIWCCTVYI" value=""><span>We can <strong>not reject</strong> an effect size of zero, and we can <strong>not reject</strong> the presence of effects as large or larger than the smallest effect size of interest.</span></label>
+<div id="radio_ZPHBDXYFQX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZPHBDXYFQX" value=""><span>We can <strong>reject</strong> an effect size of zero, and we can <strong>reject</strong> the presence of effects as large or larger than the smallest effect size of interest. </span></label><label><input type="radio" autocomplete="off" name="radio_ZPHBDXYFQX" value="answer"><span>We can <strong>not reject</strong> an effect size of zero, and we can <strong>reject</strong> the presence of effects as large or larger than the smallest effect size of interest. </span></label><label><input type="radio" autocomplete="off" name="radio_ZPHBDXYFQX" value=""><span>We can <strong>reject</strong> an effect size of zero, and we can <strong>not reject</strong> the presence of effects as large or larger than the smallest effect size of interest. </span></label><label><input type="radio" autocomplete="off" name="radio_ZPHBDXYFQX" value=""><span>We can <strong>not reject</strong> an effect size of zero, and we can <strong>not reject</strong> the presence of effects as large or larger than the smallest effect size of interest.</span></label>
 </div>
 </div>
 <p><strong>Q5</strong>: If we increase the sample size in question Q3 to 500 participants in each condition, and assuming the observed means and standard deviations would be exactly the same, which conclusion would we draw?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_VSLRLGDSWQ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_VSLRLGDSWQ" value="answer"><span>We can <strong>reject</strong> an effect size of zero, and we can <strong>reject</strong> the presence of effects as large or larger than the smallest effect size of interest. </span></label><label><input type="radio" autocomplete="off" name="radio_VSLRLGDSWQ" value=""><span>We can <strong>not reject</strong> an effect size of zero, and we can <strong>reject</strong> the presence of effects as large or larger than the smallest effect size of interest. </span></label><label><input type="radio" autocomplete="off" name="radio_VSLRLGDSWQ" value=""><span>We can <strong>reject</strong> an effect size of zero, and we can <strong>not reject</strong> the presence of effects as large or larger than the smallest effect size of interest. </span></label><label><input type="radio" autocomplete="off" name="radio_VSLRLGDSWQ" value=""><span>We can <strong>not reject</strong> an effect size of zero, and we can <strong>not reject</strong> the presence of effects as large or larger than the smallest effect size of interest.</span></label>
+<div id="radio_IMNIKVHCSS" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_IMNIKVHCSS" value="answer"><span>We can <strong>reject</strong> an effect size of zero, and we can <strong>reject</strong> the presence of effects as large or larger than the smallest effect size of interest. </span></label><label><input type="radio" autocomplete="off" name="radio_IMNIKVHCSS" value=""><span>We can <strong>not reject</strong> an effect size of zero, and we can <strong>reject</strong> the presence of effects as large or larger than the smallest effect size of interest. </span></label><label><input type="radio" autocomplete="off" name="radio_IMNIKVHCSS" value=""><span>We can <strong>reject</strong> an effect size of zero, and we can <strong>not reject</strong> the presence of effects as large or larger than the smallest effect size of interest. </span></label><label><input type="radio" autocomplete="off" name="radio_IMNIKVHCSS" value=""><span>We can <strong>not reject</strong> an effect size of zero, and we can <strong>not reject</strong> the presence of effects as large or larger than the smallest effect size of interest.</span></label>
 </div>
 </div>
 <p>Sometimes the result of a test is <strong>inconclusive</strong>, as both the null hypothesis test, and the equivalence test, of not statistically significant. The only solution in such a case is to collect additional data. Sometimes both the null hypothesis test and the equivalence test are statistically significant, in which case the effect is <strong>statistically different from zero, but practically insignificant</strong> (based on the justification for the SESOI).</p>
@@ -880,20 +1046,20 @@ Figure&nbsp;9.9: Null and alternative distribution with Type 1 and Type 2 error 
 <span id="cb18-9"><a href="#cb18-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div id="radio_ESWTYIUUOS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ESWTYIUUOS" value=""><span>0.00</span></label><label><input type="radio" autocomplete="off" name="radio_ESWTYIUUOS" value=""><span>0.05</span></label><label><input type="radio" autocomplete="off" name="radio_ESWTYIUUOS" value="answer"><span>0.33</span></label><label><input type="radio" autocomplete="off" name="radio_ESWTYIUUOS" value=""><span>0.40</span></label>
+<div id="radio_ATDMAHUEJL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ATDMAHUEJL" value=""><span>0.00</span></label><label><input type="radio" autocomplete="off" name="radio_ATDMAHUEJL" value=""><span>0.05</span></label><label><input type="radio" autocomplete="off" name="radio_ATDMAHUEJL" value="answer"><span>0.33</span></label><label><input type="radio" autocomplete="off" name="radio_ATDMAHUEJL" value=""><span>0.40</span></label>
 </div>
 </div>
 <p><strong>Q7</strong>: Assume we would only have had 15 participants in each group in Q3, instead of 50. What would be the statistical power of the test with this smaller sample size (keeping all other settings as in Q6)? Round the answer to 2 digits.</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_EXNGZMZORF" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_EXNGZMZORF" value="answer"><span>0.00</span></label><label><input type="radio" autocomplete="off" name="radio_EXNGZMZORF" value=""><span>0.05</span></label><label><input type="radio" autocomplete="off" name="radio_EXNGZMZORF" value=""><span>0.33</span></label><label><input type="radio" autocomplete="off" name="radio_EXNGZMZORF" value=""><span>0.40</span></label>
+<div id="radio_CYWUCDIWCC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CYWUCDIWCC" value="answer"><span>0.00</span></label><label><input type="radio" autocomplete="off" name="radio_CYWUCDIWCC" value=""><span>0.05</span></label><label><input type="radio" autocomplete="off" name="radio_CYWUCDIWCC" value=""><span>0.33</span></label><label><input type="radio" autocomplete="off" name="radio_CYWUCDIWCC" value=""><span>0.40</span></label>
 </div>
 </div>
 <p><strong>Q8</strong>: You might remember from discussions on statistical power for a null hypothesis significance test that the statistical power is never smaller than 5% (if the true effect size is 0, power is formally undefined, but we will observe at least 5% Type 1 errors, and the power increases when introducing a true effect). In a two-sided equivalence tests, power can be lower than the alpha level. Why?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_BUAQMUMZHB" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_BUAQMUMZHB" value=""><span>Because in an equivalence test the Type 1 error rate is not bounded at 5%.</span></label><label><input type="radio" autocomplete="off" name="radio_BUAQMUMZHB" value=""><span>Because in an equivalence test the null hypothesis and alternative hypothesis are reversed, and therefore the Type 2 error rate does not have a lower bound (just as the Type 1 error rate in NHST has no lower bound).</span></label><label><input type="radio" autocomplete="off" name="radio_BUAQMUMZHB" value="answer"><span>Because the confidence interval needs to fall between the lower and upper bound of the equivalence interval, and with small sample sizes, this probability can be close to zero (because the confidence interval is very wide).</span></label><label><input type="radio" autocomplete="off" name="radio_BUAQMUMZHB" value=""><span>Because the equivalence test is based on a confidence interval, and not on a <em>p</em>-value, and therefore power is not limited by the alpha level. </span></label>
+<div id="radio_TVYIVSLRLG" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TVYIVSLRLG" value=""><span>Because in an equivalence test the Type 1 error rate is not bounded at 5%.</span></label><label><input type="radio" autocomplete="off" name="radio_TVYIVSLRLG" value=""><span>Because in an equivalence test the null hypothesis and alternative hypothesis are reversed, and therefore the Type 2 error rate does not have a lower bound (just as the Type 1 error rate in NHST has no lower bound).</span></label><label><input type="radio" autocomplete="off" name="radio_TVYIVSLRLG" value="answer"><span>Because the confidence interval needs to fall between the lower and upper bound of the equivalence interval, and with small sample sizes, this probability can be close to zero (because the confidence interval is very wide).</span></label><label><input type="radio" autocomplete="off" name="radio_TVYIVSLRLG" value=""><span>Because the equivalence test is based on a confidence interval, and not on a <em>p</em>-value, and therefore power is not limited by the alpha level. </span></label>
 </div>
 </div>
 <p><strong>Q9</strong>: A well designed study has high power to detect an effect of interest, but also to reject the smallest effect size of interest. Perform an a-priori power analysis for the situation described in Q3. Which sample size in <strong>each group</strong> needs to be collected to achieved a desired statistical power of 90% (or 0.9), assuming the true effect size is 0, and we still assume the true standard deviation is 1.2? Use the code below, and round up the sample size (as we cannot collect a partial observation).</p>
@@ -920,8 +1086,8 @@ Figure&nbsp;9.9: Null and alternative distribution with Type 1 and Type 2 error 
 <span id="cb19-9"><a href="#cb19-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div id="radio_IYHXYTNZTE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_IYHXYTNZTE" value=""><span>100</span></label><label><input type="radio" autocomplete="off" name="radio_IYHXYTNZTE" value="answer"><span>126</span></label><label><input type="radio" autocomplete="off" name="radio_IYHXYTNZTE" value=""><span>200</span></label><label><input type="radio" autocomplete="off" name="radio_IYHXYTNZTE" value=""><span>252</span></label>
+<div id="radio_DSWQESWTYI" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DSWQESWTYI" value=""><span>100</span></label><label><input type="radio" autocomplete="off" name="radio_DSWQESWTYI" value="answer"><span>126</span></label><label><input type="radio" autocomplete="off" name="radio_DSWQESWTYI" value=""><span>200</span></label><label><input type="radio" autocomplete="off" name="radio_DSWQESWTYI" value=""><span>252</span></label>
 </div>
 </div>
 <p><strong>Q10</strong>: Assume that when performing the power analysis for Q9 we did not expect the true effect size to be 0, but we actually expected a mean difference of 0.1 grade point. Which sample size in <strong>each group</strong> would we need to collect for the equivalence test, now that we expect a true effect size of 0.1? Change the variable <code>delta</code> in <code>power_t_TOST</code> to answer this question.</p>
@@ -937,8 +1103,8 @@ Figure&nbsp;9.9: Null and alternative distribution with Type 1 and Type 2 error 
 <!-- ) -->
 <!-- ``` -->
 <div class="cell" data-layout-align="center">
-<div id="radio_JLTWXOBAEZ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_JLTWXOBAEZ" value=""><span>117</span></label><label><input type="radio" autocomplete="off" name="radio_JLTWXOBAEZ" value="answer"><span>157</span></label><label><input type="radio" autocomplete="off" name="radio_JLTWXOBAEZ" value=""><span>314</span></label><label><input type="radio" autocomplete="off" name="radio_JLTWXOBAEZ" value=""><span>3118</span></label>
+<div id="radio_UUOSEXNGZM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_UUOSEXNGZM" value=""><span>117</span></label><label><input type="radio" autocomplete="off" name="radio_UUOSEXNGZM" value="answer"><span>157</span></label><label><input type="radio" autocomplete="off" name="radio_UUOSEXNGZM" value=""><span>314</span></label><label><input type="radio" autocomplete="off" name="radio_UUOSEXNGZM" value=""><span>3118</span></label>
 </div>
 </div>
 <p><strong>Q11</strong>: Change the equivalence range to -0.1 and 0.1 for Q9 (and set the expected effect size of <code>delta</code> to 0). To be able to reject effects outside such a very narrow equivalence range, you’ll need a large sample size. With an alpha of 0.05, and a desired power of 0.9 (or 90%), how many participants would you need in <strong>each group</strong>?</p>
@@ -954,8 +1120,8 @@ Figure&nbsp;9.9: Null and alternative distribution with Type 1 and Type 2 error 
 <!-- ) -->
 <!-- ``` -->
 <div class="cell" data-layout-align="center">
-<div id="radio_YEHMYDJFRE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_YEHMYDJFRE" value=""><span>117</span></label><label><input type="radio" autocomplete="off" name="radio_YEHMYDJFRE" value=""><span>157</span></label><label><input type="radio" autocomplete="off" name="radio_YEHMYDJFRE" value=""><span>314</span></label><label><input type="radio" autocomplete="off" name="radio_YEHMYDJFRE" value="answer"><span>3118</span></label>
+<div id="radio_ZORFBUAQMU" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZORFBUAQMU" value=""><span>117</span></label><label><input type="radio" autocomplete="off" name="radio_ZORFBUAQMU" value=""><span>157</span></label><label><input type="radio" autocomplete="off" name="radio_ZORFBUAQMU" value=""><span>314</span></label><label><input type="radio" autocomplete="off" name="radio_ZORFBUAQMU" value="answer"><span>3118</span></label>
 </div>
 </div>
 <p>You can see it takes a very large sample size to have high power to reliably reject very small effects. This should not be surprising. After all, it also requires a very large sample size to <em>detect</em> small effects! This is why we typically leave it to a future meta-analysis to detect, or reject, the presence of small effects.</p>
@@ -1019,8 +1185,8 @@ Figure&nbsp;9.9: Null and alternative distribution with Type 1 and Type 2 error 
 <span id="cb20-7"><a href="#cb20-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div id="radio_TAFNMHQSPO" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TAFNMHQSPO" value="answer"><span>We can <strong>reject</strong> an effect size of zero, and we can <strong>reject</strong> the presence of effects as large or larger than the smallest effect size of interest. </span></label><label><input type="radio" autocomplete="off" name="radio_TAFNMHQSPO" value=""><span>We can <strong>not reject</strong> an effect size of zero, and we can <strong>reject</strong> the presence of effects as large or larger than the smallest effect size of interest. </span></label><label><input type="radio" autocomplete="off" name="radio_TAFNMHQSPO" value=""><span>We can <strong>reject</strong> an effect size of zero, and we can <strong>not reject</strong> the presence of effects as large or larger than the smallest effect size of interest. </span></label><label><input type="radio" autocomplete="off" name="radio_TAFNMHQSPO" value=""><span>We can <strong>not reject</strong> an effect size of zero, and we can <strong>not reject</strong> the presence of effects as large or larger than the smallest effect size of interest.</span></label>
+<div id="radio_MZHBIYHXYT" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MZHBIYHXYT" value="answer"><span>We can <strong>reject</strong> an effect size of zero, and we can <strong>reject</strong> the presence of effects as large or larger than the smallest effect size of interest. </span></label><label><input type="radio" autocomplete="off" name="radio_MZHBIYHXYT" value=""><span>We can <strong>not reject</strong> an effect size of zero, and we can <strong>reject</strong> the presence of effects as large or larger than the smallest effect size of interest. </span></label><label><input type="radio" autocomplete="off" name="radio_MZHBIYHXYT" value=""><span>We can <strong>reject</strong> an effect size of zero, and we can <strong>not reject</strong> the presence of effects as large or larger than the smallest effect size of interest. </span></label><label><input type="radio" autocomplete="off" name="radio_MZHBIYHXYT" value=""><span>We can <strong>not reject</strong> an effect size of zero, and we can <strong>not reject</strong> the presence of effects as large or larger than the smallest effect size of interest.</span></label>
 </div>
 </div>
 </section><section id="questions-about-the-small-telescopes-approach" class="level3 webex-check webex-box" data-number="9.13.2"><h3 data-number="9.13.2" class="anchored" data-anchor-id="questions-about-the-small-telescopes-approach">
@@ -1045,8 +1211,8 @@ Figure&nbsp;9.9: Null and alternative distribution with Type 1 and Type 2 error 
 <span id="cb21-7"><a href="#cb21-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div id="radio_PQSNFKHWTS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_PQSNFKHWTS" value=""><span><em>d</em> =0.25 (setting power to 0.33) or 0.26 (setting power to 1/3)</span></label><label><input type="radio" autocomplete="off" name="radio_PQSNFKHWTS" value=""><span><em>d</em> =0.33 (setting power to 0.33) or 0.34 (setting power to 1/3)</span></label><label><input type="radio" autocomplete="off" name="radio_PQSNFKHWTS" value="answer"><span><em>d</em> =0.49 (setting power to 0.33) or 0.50 (setting power to 1/3)</span></label><label><input type="radio" autocomplete="off" name="radio_PQSNFKHWTS" value=""><span><em>d</em> =0.71 (setting power to 0.33) or 0.72 (setting power to 1/3)</span></label>
+<div id="radio_NZTEJLTWXO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_NZTEJLTWXO" value=""><span><em>d</em> =0.25 (setting power to 0.33) or 0.26 (setting power to 1/3)</span></label><label><input type="radio" autocomplete="off" name="radio_NZTEJLTWXO" value=""><span><em>d</em> =0.33 (setting power to 0.33) or 0.34 (setting power to 1/3)</span></label><label><input type="radio" autocomplete="off" name="radio_NZTEJLTWXO" value="answer"><span><em>d</em> =0.49 (setting power to 0.33) or 0.50 (setting power to 1/3)</span></label><label><input type="radio" autocomplete="off" name="radio_NZTEJLTWXO" value=""><span><em>d</em> =0.71 (setting power to 0.33) or 0.72 (setting power to 1/3)</span></label>
 </div>
 </div>
 <p><strong>Q14</strong>: Let’s assume you are trying to replicate a previous result based on a correlation in a two-sided test. The study had 150 participants. Calculate the SESOI using a small telescopes justification for a replication of this study that will use an alpha level of 0.05. Note that for this answer, it happens to depend on whether you enter the power as 0.33 or 1/3 (or 0.333). You can use the code below.</p>
@@ -1065,41 +1231,41 @@ Figure&nbsp;9.9: Null and alternative distribution with Type 1 and Type 2 error 
 <span id="cb22-5"><a href="#cb22-5"></a>  <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div id="radio_EBUELCZRNM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_EBUELCZRNM" value="answer"><span><em>r</em> = 0.124 (setting power to 0.33) or 0.125 (setting power to 1/3)</span></label><label><input type="radio" autocomplete="off" name="radio_EBUELCZRNM" value=""><span><em>r</em> = 0.224 (setting power to 0.33) or 0.225 (setting power to 1/3)</span></label><label><input type="radio" autocomplete="off" name="radio_EBUELCZRNM" value=""><span><em>r</em> = 0.226 (setting power to 0.33) or 0.227 (setting power to 1/3)</span></label><label><input type="radio" autocomplete="off" name="radio_EBUELCZRNM" value=""><span><em>r</em> = 0.402 (setting power to 0.33) or 0.403 (setting power to 1/3)</span></label>
+<div id="radio_BAEZYEHMYD" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BAEZYEHMYD" value="answer"><span><em>r</em> = 0.124 (setting power to 0.33) or 0.125 (setting power to 1/3)</span></label><label><input type="radio" autocomplete="off" name="radio_BAEZYEHMYD" value=""><span><em>r</em> = 0.224 (setting power to 0.33) or 0.225 (setting power to 1/3)</span></label><label><input type="radio" autocomplete="off" name="radio_BAEZYEHMYD" value=""><span><em>r</em> = 0.226 (setting power to 0.33) or 0.227 (setting power to 1/3)</span></label><label><input type="radio" autocomplete="off" name="radio_BAEZYEHMYD" value=""><span><em>r</em> = 0.402 (setting power to 0.33) or 0.403 (setting power to 1/3)</span></label>
 </div>
 </div>
 <p><strong>Q15</strong>: In the age of big data researchers often have access to large databases, and can run correlations on samples of thousands of observations. Let’s assume the original study in the previous question did not have 150 observations, but 15000 observations. We still use an alpha level of 0.05. Note that for this answer, it happens to depend on whether you enter the power as 0.33 or 1/3 (or 0.333). What is the SESOI based on the small telescopes approach?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_WOXBZMPGPQ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_WOXBZMPGPQ" value="answer"><span><em>r</em> = 0.0124 (setting power to 0.33) or 0.0125 (setting power to 1/3)</span></label><label><input type="radio" autocomplete="off" name="radio_WOXBZMPGPQ" value=""><span><em>r</em> = 0.0224 (setting power to 0.33) or 0.0225 (setting power to 1/3)</span></label><label><input type="radio" autocomplete="off" name="radio_WOXBZMPGPQ" value=""><span><em>r</em> = 0.0226 (setting power to 0.33) or 0.0227 (setting power to 1/3)</span></label><label><input type="radio" autocomplete="off" name="radio_WOXBZMPGPQ" value=""><span><em>r</em> = 0.0402 (setting power to 0.33) or 0.0403 (setting power to 1/3)</span></label>
+<div id="radio_JFRETAFNMH" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JFRETAFNMH" value="answer"><span><em>r</em> = 0.0124 (setting power to 0.33) or 0.0125 (setting power to 1/3)</span></label><label><input type="radio" autocomplete="off" name="radio_JFRETAFNMH" value=""><span><em>r</em> = 0.0224 (setting power to 0.33) or 0.0225 (setting power to 1/3)</span></label><label><input type="radio" autocomplete="off" name="radio_JFRETAFNMH" value=""><span><em>r</em> = 0.0226 (setting power to 0.33) or 0.0227 (setting power to 1/3)</span></label><label><input type="radio" autocomplete="off" name="radio_JFRETAFNMH" value=""><span><em>r</em> = 0.0402 (setting power to 0.33) or 0.0403 (setting power to 1/3)</span></label>
 </div>
 </div>
 <p>Is this effect likely to be practically or theoretically significant? Probably not. This would be a situation where the small telescopes approach is not a very useful procedure to determine a smallest effect size of interest.</p>
 <p><strong>Q16</strong>: Using the small telescopes approach, you set the SESOI in a replication study to <em>d</em> = 0.35, and set the alpha level to 0.05. After collecting the data in a well-powered replication study that was as close to the original study as practically possible, you find no significant effect, and you can reject effects as large or larger than <em>d</em> = 0.35. What is the correct interpretation of this result?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_KIHVMFSPLJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KIHVMFSPLJ" value=""><span>There is no effect.</span></label><label><input type="radio" autocomplete="off" name="radio_KIHVMFSPLJ" value=""><span>We can statistically reject (using an alpha of 0.05) effects anyone would find theoretically meaningful.</span></label><label><input type="radio" autocomplete="off" name="radio_KIHVMFSPLJ" value=""><span>We can not statistically reject (using an alpha of 0.05) effects anyone would find practically relevant.</span></label><label><input type="radio" autocomplete="off" name="radio_KIHVMFSPLJ" value="answer"><span>We can statistically reject (using an alpha of 0.05) effects the original study had 33% power to detect.</span></label>
+<div id="radio_QSPOPQSNFK" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_QSPOPQSNFK" value=""><span>There is no effect.</span></label><label><input type="radio" autocomplete="off" name="radio_QSPOPQSNFK" value=""><span>We can statistically reject (using an alpha of 0.05) effects anyone would find theoretically meaningful.</span></label><label><input type="radio" autocomplete="off" name="radio_QSPOPQSNFK" value=""><span>We can not statistically reject (using an alpha of 0.05) effects anyone would find practically relevant.</span></label><label><input type="radio" autocomplete="off" name="radio_QSPOPQSNFK" value="answer"><span>We can statistically reject (using an alpha of 0.05) effects the original study had 33% power to detect.</span></label>
 </div>
 </div>
 </section><section id="questions-about-specifying-the-sesoi-as-the-minimal-statistically-detectable-effect" class="level3 webex-check webex-box" data-number="9.13.3"><h3 data-number="9.13.3" class="anchored" data-anchor-id="questions-about-specifying-the-sesoi-as-the-minimal-statistically-detectable-effect">
 <span class="header-section-number">9.13.3</span> Questions about specifying the SESOI as the Minimal Statistically Detectable Effect</h3>
 <p><strong>Q17</strong>: Open the online Shiny app that can be used to compute the minimal statistically detectable effect for two independent groups: https://shiny.ieis.tue.nl/d_p_power/. Three sliders influence what the figure looks like: The sample size per condition, the true effect size, and the alpha level. Which statement is true?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_AFQMVZBODL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_AFQMVZBODL" value=""><span>The critical <em>d</em>-value is influenced by the sample size per group, the true effect size, but <strong>not</strong> by the alpha level.</span></label><label><input type="radio" autocomplete="off" name="radio_AFQMVZBODL" value="answer"><span>The critical <em>d</em>-value is influenced by the sample size per group, the alpha level, but <strong>not</strong> by the true effect size.</span></label><label><input type="radio" autocomplete="off" name="radio_AFQMVZBODL" value=""><span>The critical <em>d</em>-value is influenced by the alpha level, the true effect size, but <strong>not</strong> by the sample size per group.</span></label><label><input type="radio" autocomplete="off" name="radio_AFQMVZBODL" value=""><span>The critical <em>d</em>-value is influenced by the sample size per group, the alpha level, and by the true effect size.</span></label>
+<div id="radio_HWTSEBUELC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HWTSEBUELC" value=""><span>The critical <em>d</em>-value is influenced by the sample size per group, the true effect size, but <strong>not</strong> by the alpha level.</span></label><label><input type="radio" autocomplete="off" name="radio_HWTSEBUELC" value="answer"><span>The critical <em>d</em>-value is influenced by the sample size per group, the alpha level, but <strong>not</strong> by the true effect size.</span></label><label><input type="radio" autocomplete="off" name="radio_HWTSEBUELC" value=""><span>The critical <em>d</em>-value is influenced by the alpha level, the true effect size, but <strong>not</strong> by the sample size per group.</span></label><label><input type="radio" autocomplete="off" name="radio_HWTSEBUELC" value=""><span>The critical <em>d</em>-value is influenced by the sample size per group, the alpha level, and by the true effect size.</span></label>
 </div>
 </div>
 <p><strong>Q18</strong>: Imagine researchers performed a study with 18 participants in each condition, and performed a <em>t</em>-test using an alpha level of 0.01. Using the Shiny app, what is the smallest effect size that could have been statistically significant in this study?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_EWFSTLCDON" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_EWFSTLCDON" value=""><span><em>d</em> = 0.47</span></label><label><input type="radio" autocomplete="off" name="radio_EWFSTLCDON" value=""><span><em>d</em> = 0.56</span></label><label><input type="radio" autocomplete="off" name="radio_EWFSTLCDON" value="answer"><span><em>d</em> = 0.91</span></label><label><input type="radio" autocomplete="off" name="radio_EWFSTLCDON" value=""><span><em>d</em> = 1</span></label>
+<div id="radio_ZRNMWOXBZM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZRNMWOXBZM" value=""><span><em>d</em> = 0.47</span></label><label><input type="radio" autocomplete="off" name="radio_ZRNMWOXBZM" value=""><span><em>d</em> = 0.56</span></label><label><input type="radio" autocomplete="off" name="radio_ZRNMWOXBZM" value="answer"><span><em>d</em> = 0.91</span></label><label><input type="radio" autocomplete="off" name="radio_ZRNMWOXBZM" value=""><span><em>d</em> = 1</span></label>
 </div>
 </div>
 <p><strong>Q19</strong>: You expect the true effect size in your next study to be <em>d</em> = 0.5, and you plan to use an alpha level of 0.05. You collect 30 participants in each group for an independent <em>t</em>-test. Which statement is true?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_ZMCNOBFSPT" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZMCNOBFSPT" value=""><span>You have low power for all possible effect sizes.</span></label><label><input type="radio" autocomplete="off" name="radio_ZMCNOBFSPT" value=""><span>Observed effect sizes of <em>d</em> = 0.5 will never be statistically significant.</span></label><label><input type="radio" autocomplete="off" name="radio_ZMCNOBFSPT" value="answer"><span>Observed effect sizes of <em>d</em> = 0.5 will never be statistically significant.</span></label><label><input type="radio" autocomplete="off" name="radio_ZMCNOBFSPT" value=""><span>Observed effect sizes of <em>d</em> = 0.5 will be statistically significant.</span></label>
+<div id="radio_PGPQKIHVMF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_PGPQKIHVMF" value=""><span>You have low power for all possible effect sizes.</span></label><label><input type="radio" autocomplete="off" name="radio_PGPQKIHVMF" value=""><span>Observed effect sizes of <em>d</em> = 0.5 will be statistically significant 5% of the time.</span></label><label><input type="radio" autocomplete="off" name="radio_PGPQKIHVMF" value="answer"><span>Observed effect sizes of <em>d</em> = 0.5 will never be statistically significant.</span></label><label><input type="radio" autocomplete="off" name="radio_PGPQKIHVMF" value=""><span>Observed effect sizes of <em>d</em> = 0.5 will be statistically significant.</span></label>
 </div>
 </div>
 <p>The example we have used so far was based on performing an independent <em>t</em>-test, but the idea can be generalized. A shiny app for an <em>F</em>-test is available here: <a href="https://shiny.ieis.tue.nl/f_p_power/" class="uri">https://shiny.ieis.tue.nl/f_p_power/</a>. The effect size associated to the power of an <em>F</em>-test is partial eta squared (<span class="math inline">\(\eta_{p}^{2})\)</span>, which for a One-Way ANOVA (visualized in the Shiny app) equals eta-squared.</p>
@@ -1118,15 +1284,15 @@ Figure&nbsp;9.10: Illustration of the critical <em>F</em>-value for two groups, 
 </div>
 <p><strong>Q20</strong>: Set the number of participants (per condition) to 14, and the number of groups to 3. Using the Shiny app at <a href="https://shiny.ieis.tue.nl/f_p_power/" class="uri">https://shiny.ieis.tue.nl/f_p_power/</a> which effect sizes (expressed in partial eta-squared, as indicated on the vertical axis) can be statistically significant with n = 14 per group, and 3 groups?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_DZUUNWPZEX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DZUUNWPZEX" value=""><span>Only effects larger than 0.11</span></label><label><input type="radio" autocomplete="off" name="radio_DZUUNWPZEX" value="answer"><span>Only effects larger than 0.13</span></label><label><input type="radio" autocomplete="off" name="radio_DZUUNWPZEX" value=""><span>Only effects larger than 0.14</span></label><label><input type="radio" autocomplete="off" name="radio_DZUUNWPZEX" value=""><span>Only effects larger than 0.16</span></label>
+<div id="radio_SPLJAFQMVZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_SPLJAFQMVZ" value=""><span>Only effects larger than 0.11</span></label><label><input type="radio" autocomplete="off" name="radio_SPLJAFQMVZ" value="answer"><span>Only effects larger than 0.13</span></label><label><input type="radio" autocomplete="off" name="radio_SPLJAFQMVZ" value=""><span>Only effects larger than 0.14</span></label><label><input type="radio" autocomplete="off" name="radio_SPLJAFQMVZ" value=""><span>Only effects larger than 0.16</span></label>
 </div>
 </div>
 <p>Every sample size and alpha level implies a minimal statistically detectable effect that can be statistically significant in your study. Looking at which observed effects you can detect is a useful way to make sure you could actually detect the smallest effect size you are interested in.</p>
 <p><strong>Q21</strong>: Using the minimal statistically detectable effect, you set the SESOI in a replication study to <em>d</em> = 0.35, and set the alpha level to 0.05. After collecting the data in a well-powered replication study that was as close to the original study as practically possible, you find no significant effect, and you can reject effects as large or larger than <em>d</em> = 0.35. What is the correct interpretation of this result?</p>
 <div class="cell" data-layout-align="center">
-<div id="radio_UCZWDWQVOC" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UCZWDWQVOC" value=""><span>There is no effect.</span></label><label><input type="radio" autocomplete="off" name="radio_UCZWDWQVOC" value=""><span>We can statistically reject (using an alpha of 0.05) effects anyone would find theoretically meaningful.</span></label><label><input type="radio" autocomplete="off" name="radio_UCZWDWQVOC" value=""><span>We can statistically reject (using an alpha of 0.05) effects anyone would find practically relevant.</span></label><label><input type="radio" autocomplete="off" name="radio_UCZWDWQVOC" value="answer"><span>We can statistically reject (using an alpha of 0.05) effects that could have been statistically significant in the original study.</span></label>
+<div id="radio_BODLEWFSTL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BODLEWFSTL" value=""><span>There is no effect.</span></label><label><input type="radio" autocomplete="off" name="radio_BODLEWFSTL" value=""><span>We can statistically reject (using an alpha of 0.05) effects anyone would find theoretically meaningful.</span></label><label><input type="radio" autocomplete="off" name="radio_BODLEWFSTL" value=""><span>We can statistically reject (using an alpha of 0.05) effects anyone would find practically relevant.</span></label><label><input type="radio" autocomplete="off" name="radio_BODLEWFSTL" value="answer"><span>We can statistically reject (using an alpha of 0.05) effects that could have been statistically significant in the original study.</span></label>
 </div>
 </div>
 </section><section id="open-questions" class="level3" data-number="9.13.4"><h3 data-number="9.13.4" class="anchored" data-anchor-id="open-questions">
@@ -1530,383 +1696,255 @@ function move_sidebar() {
 move_sidebar();
 window.onresize = move_sidebar;
 </script><script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
       });
     }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
         }
-        return container.innerHTML
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1914,185 +1952,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./08-samplesizejustification.html" class="pagination-link" aria-label="Sample Size Justification">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sample Size Justification</span></span>
       </a>          
